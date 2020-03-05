@@ -6,17 +6,7 @@
 
 #include <glm/glm.hpp>
 
-class Texture {
+class Texture2D {
 public:
-    //type is GL_TEXTURE_*
-    //format is the textures internal format
-    //
-    Texture(GLenum _type, GLenum format, glm::ivec3 _dimensions, void* data);
-    
-    void use(GLenum texUnit);
 private:
-    GLuint id;
-
-    GLenum type;
-    glm::ivec3 dimensions;
 };

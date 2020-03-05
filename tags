@@ -126,6 +126,7 @@ Skeleton	Engine/include/Animator.hpp	/^    Skeleton(std::vector<Bone> _bones, un
 Skeleton	Engine/include/Animator.hpp	/^struct Skeleton {$/;"	s	namespace:Engine
 Terrain	Game/include/Terrain.hpp	/^class Terrain : public Engine::Component {$/;"	c
 Terrain	Game/src/Components/Terrain.cpp	/^Terrain::Terrain(Engine::ShaderProgram* program)$/;"	f	class:Terrain
+Texture2D	Engine/include/Texture.hpp	/^class Texture2D {$/;"	c
 Time	Engine/include/Time.hpp	/^class Time {$/;"	c	namespace:Engine
 Transform	Engine/include/Transform.hpp	/^class Transform : public Component {$/;"	c	namespace:Engine
 Transform	Engine/src/Components/Transform.cpp	/^Transform::Transform() : Component(std::string("transform")) {$/;"	f	class:Transform
