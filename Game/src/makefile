@@ -18,9 +18,9 @@ DEPS=$(SRCS:%.cpp=$(DEPDIR)/%.d)
 
 COMPILE.c=$(CC) $(DEPFLAGS) $(CFLAGS) -c
 
-$(ODIR)/%.o: %.cpp $(DEPDIR)/%.d | $(DEPDIR) 
+$(ODIR)/%.o: %.cpp $(DEPDIR)/%.d | $(DEPDIR)
 	mkdir -p "$(@D)"
-	mkdir -p $(patsubst $(ODIR)/%, $(DEPDIR)/%, $(@D))		
+	mkdir -p $(patsubst $(ODIR)/%, $(DEPDIR)/%, $(@D))
 	$(COMPILE.c) -o $@ $<
 	$(POSTCOMPILE)
 
@@ -34,4 +34,4 @@ include $(wildcard $(DEPS))
 
 clean:
 	rm main.o MyGame.o Game
-	rm -f $(COMPDIR)/obj/*.o 
+	rm -f $(COMPDIR)/$(ODIR)/*.o

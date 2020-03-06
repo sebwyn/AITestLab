@@ -27,6 +27,7 @@ public:
     static void setWindow(GLFWwindow* _window);
     static void subscribe(events eventList, WindowEventSubscriber* subscriber);
     static void unsubscribe(events eventList, WindowEventSubscriber* subscriber);
+    static void setCursorEnabled(bool state);
 
     friend void windowResizeCallback(GLFWwindow* window, int width, int height);
     friend void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -38,6 +39,7 @@ private:
     static GLFWwindow* window;
     static std::vector<std::list<WindowEventSubscriber*> > subscribers;
     WindowEventManager();
+    static bool cursorEnabled;
 };
 
 class WindowEventSubscriber{

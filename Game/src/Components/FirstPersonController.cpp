@@ -116,9 +116,8 @@ void FirstPersonController::update(){
 
     calcTranslation(deltaTime);
     objTf->translate(translationVector.x,translationVector.y,translationVector.z);
-	
-	glm::vec3 p = objTf->calcGlobalPosition();
-	//std::cout << "x: " << p.x << " y: " << p.y << " z: " << p.z << std::endl; 
+
+	  glm::vec3 p = objTf->calcGlobalPosition();
 
     lastTime = glfwGetTime();
 }

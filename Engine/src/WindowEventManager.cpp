@@ -4,8 +4,10 @@ namespace Engine {
 
 GLFWwindow* WindowEventManager::window;
 std::vector<std::list<WindowEventSubscriber*> > WindowEventManager::subscribers;
+bool WindowEventManager::cursorEnabled;
 
 void WindowEventManager::setWindow(GLFWwindow* _window){
+
     window = _window;
     for (int i = 0; i < 5; i++){
         subscribers.push_back(std::list<WindowEventSubscriber*>());
@@ -26,6 +28,10 @@ void WindowEventManager::unsubscribe(events eventList, WindowEventSubscriber* su
     subscribers[eventList].remove(subscriber);
 }
 
+void WindowEventManager::setCursorEnabled(bool state){
+    cursorEnabled = state;
+}
+
 void windowResizeCallback(GLFWwindow* window, int width, int height){
     std::list<WindowEventSubscriber*> subscriberList = WindowEventManager::subscribers[WindowEventManager::WINDOW_RESIZE];
     std::list<WindowEventSubscriber*>::iterator i;
@@ -43,26 +49,32 @@ void keyCallback(GLFWwindow* window,int key, int scancode, int action, int mods)
 }
 
 void cursorCallback(GLFWwindow* window, double xpos, double ypos){
-    std::list<WindowEventSubscriber*> subscriberList = WindowEventManager::subscribers[WindowEventManager::CURSOR_POSITION];
-    std::list<WindowEventSubscriber*>::iterator i;
-    for (i = subscriberList.begin(); i != subscriberList.end(); ++i){
-        (*i)->onCursorMove(xpos, ypos);
+    if (!WindowEventManager::cursorEnabled) {
+        std::list<WindowEventSubscriber*> subscriberList = WindowEventManager::subscribers[WindowEventManager::CURSOR_POSITION];
+        std::list<WindowEventSubscriber*>::iterator i;
+        for (i = subscriberList.begin(); i != subscriberList.end(); ++i){
+            (*i)->onCursorMove(xpos, ypos);
+        }
     }
 }
 
 void mouseClickCallback(GLFWwindow* window, int button, int action, int mod){
-    std::list<WindowEventSubscriber*> subscriberList = WindowEventManager::subscribers[WindowEventManager::MOUSE_BUTTON];
-    std::list<WindowEventSubscriber*>::iterator i;
-    for (i = subscriberList.begin(); i != subscriberList.end(); ++i){
-        (*i)->onMouseClick(button, action, mod);
+    if (!WindowEventManager::cursorEnabled) {
+        std::list<WindowEventSubscriber*> subscriberList = WindowEventManager::subscribers[WindowEventManager::MOUSE_BUTTON];
+        std::list<WindowEventSubscriber*>::iterator i;
+        for (i = subscriberList.begin(); i != subscriberList.end(); ++i){
+            (*i)->onMouseClick(button, action, mod);
+        }
     }
 }
 
 void mouseScrollCallback(GLFWwindow* window, double xoffset, double yoffset){
-    std::list<WindowEventSubscriber*> subscriberList = WindowEventManager::subscribers[WindowEventManager::MOUSE_SCROLL];
-    std::list<WindowEventSubscriber*>::iterator i;
-    for (i = subscriberList.begin(); i != subscriberList.end(); ++i){
-        (*i)->onMouseScroll(xoffset, yoffset);
+    if (!WindowEventManager::cursorEnabled) {
+        std::list<WindowEventSubscriber*> subscriberList = WindowEventManager::subscribers[WindowEventManager::MOUSE_SCROLL];
+        std::list<WindowEventSubscriber*>::iterator i;
+        for (i = subscriberList.begin(); i != subscriberList.end(); ++i){
+            (*i)->onMouseScroll(xoffset, yoffset);
+        }
     }
 }
 

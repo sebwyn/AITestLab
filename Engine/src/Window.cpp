@@ -34,6 +34,8 @@ Window::Window(const char* title, int _width, int _height) : WindowEventSubscrib
     WindowEventManager::setWindow(window);
     WindowEventSubscriber::subscribe(WindowEventManager::events::WINDOW_RESIZE);
     WindowEventSubscriber::subscribe(WindowEventManager::events::KEYBOARD_INPUT);
+
+    WindowEventManager::setCursorEnabled(true);
 }
 
 void Window::update() const {
@@ -52,12 +54,16 @@ void Window::disableCursor(){
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     if (glfwRawMouseMotionSupported())
     glfwSetInputMode(window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE);
+
+    WindowEventManager::setCursorEnabled(false);
 }
 
 void Window::enableCursor(){
     cursorEnabled = true;
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
     glfwSetInputMode(window, GLFW_RAW_MOUSE_MOTION, GLFW_FALSE);
+
+    WindowEventManager::setCursorEnabled(true);
 }
 
 void Window::onWindowResize(int width, int height){

@@ -10,11 +10,10 @@ public:
     virtual void start();
     virtual void update();
 private:
-    
-    Engine::ShaderProgram *simpleAnimated, *simple;
-    Engine::VAO *cubeVAO, *playerVAO, *robotVAO;
 
-    void addJointInPose(Engine::Skeleton sk, std::vector<Engine::BoneTransform> pose, Engine::Bone* b, glm::mat4 parent);
+    Engine::ShaderProgram *simple;
+    Engine::VAO *cubeVAO;
+
     //this is inherited from Engine::Game
     //Engine::GameObject* root;
 };
