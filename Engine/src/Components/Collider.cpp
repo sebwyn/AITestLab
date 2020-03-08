@@ -1,11 +1,11 @@
-#include "Collider.hpp"
+#include "Components/Collider.hpp"
 #include "CollideableManager.hpp"
 
 #include <iostream>
 
 using namespace Engine;
 
-Collider::Collider(float width, float height, float depth) 
+Collider::Collider(float width, float height, float depth)
  : Component("collider") {
     dimensions = glm::vec3(width, height, depth);
 }
@@ -25,12 +25,12 @@ void Collider::onDisable(){
 
 void Collider::update(){
     //check for collisions from CollideableManager and notify GameObject
-    std::vector<CollisionEvent> events = CollideableManager::getCollisions(this);   
+    std::vector<CollisionEvent> events = CollideableManager::getCollisions(this);
     for(auto & e : events){
         //notify the parent object
 	std::cout << "Collision with: " << e.obj->getName() << std::endl;
         break;
-    } 
+    }
 }
 
 void Collider::collision_update(){
@@ -48,7 +48,7 @@ void Collider::collision_update(){
 
 float calcOverlap(float min1, float max1, float min2, float max2){
     if(min1 < min2){
-        return max1 - min2; 
+        return max1 - min2;
     } else {
         return max2 - min1;
     }
@@ -57,16 +57,16 @@ float calcOverlap(float min1, float max1, float min2, float max2){
 
 std::vector<Contact> Collider::didCollide(Collider* o_col){
     std::vector<Contact> contacts;
-    
+
     Transform* m_trans = (Transform*)object->getComponent("transform");
     Transform* o_trans = (Transform*)o_col->getObject()->getComponent("transform");
-    
+
     bool collide = true;
-    std::vector<glm::vec3> 
+    std::vector<glm::vec3>
         m_axis{m_trans->getForward(), m_trans->getRight(), m_trans->getUp()};
-    std::vector<glm::vec3> 
+    std::vector<glm::vec3>
         o_axis{o_trans->getForward(), o_trans->getRight(), o_trans->getUp()};
-    
+
     std::vector<glm::vec3> axis = std::vector<glm::vec3>{m_axis[0], m_axis[1], m_axis[2],
         (float)-1.0*o_axis[0], (float)-1.0*o_axis[1], (float)-1.0*o_axis[2]};
 
@@ -90,17 +90,17 @@ std::vector<Contact> Collider::didCollide(Collider* o_col){
         float m_min = glm::dot(verts[0], a);
         for(int i = 1; i < 8; i++){
             float d = glm::dot(verts[i], a);
-            if(d < m_min){m_min = d;} 
-            else if(d > m_max){m_max = d;} 
+            if(d < m_min){m_min = d;}
+            else if(d > m_max){m_max = d;}
         }
-        glm::vec3 o_verts[8]; 
+        glm::vec3 o_verts[8];
         memcpy(o_verts, o_col->getVerts(), 8 * sizeof(glm::vec3));
         float o_max = glm::dot(o_verts[0], a);
         float o_min = glm::dot(o_verts[0], a);
         for(int i = 1; i < 8; i++){
             float d = glm::dot(o_verts[i], a);
-            if(d < o_min){o_min = d;} 
-            else if(d > o_max){o_max = d;} 
+            if(d < o_min){o_min = d;}
+            else if(d > o_max){o_max = d;}
         }
         float s = calcOverlap(m_min, m_max, o_min, o_max);
         if(s < 0){
@@ -111,12 +111,12 @@ std::vector<Contact> Collider::didCollide(Collider* o_col){
             minOverlap = s;
             minTran = a;
             if(o_min < m_min){
-                minTran *= -1; 
+                minTran *= -1;
             }
         }
 	}
     if(collide){
-        contacts.push_back(Contact(minTran, minOverlap));    
+        contacts.push_back(Contact(minTran, minOverlap));
     }
 	return contacts;
 }

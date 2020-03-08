@@ -1,6 +1,6 @@
 #include "Game.hpp"
 
-#include "Animator.hpp"
+#include "Components/Animator.hpp"
 #include "ShaderProgram.hpp"
 #include "VAO.hpp"
 
@@ -11,7 +11,6 @@ public:
     virtual void update();
 private:
 
-    Engine::ShaderProgram *simple;
     Engine::VAO *cubeVAO;
 
     //this is inherited from Engine::Game

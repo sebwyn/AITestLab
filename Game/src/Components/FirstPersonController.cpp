@@ -1,4 +1,4 @@
-#include "FirstPersonController.hpp"
+#include "Components/FirstPersonController.hpp"
 
 using namespace Engine;
 

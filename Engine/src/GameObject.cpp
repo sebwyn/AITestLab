@@ -1,7 +1,7 @@
 #include "GameObject.hpp"
 
-#include "Renderable.hpp"
-#include "Transform.hpp"
+#include "Components/Renderable.hpp"
+#include "Components/Transform.hpp"
 
 #include <iostream>
 
@@ -43,7 +43,7 @@ Component* GameObject::getComponent(std::string name){
     Component* c = NULL;
     for(auto & component : components){
          if(component->getName() == name){
-		c = component; 
+		c = component;
          }
     }
     return c;
@@ -83,7 +83,7 @@ GameObject* GameObject::getChild(std::string _name){
 }
 
 void GameObject::update(){
-    if(isActive){ 
+    if(isActive){
     	for(auto & component : components){
    	    if(component->getEnabled()){
             	component->update();
@@ -121,7 +121,7 @@ void GameObject::render(glm::mat4 projection,glm::mat4 view){
     }
 }
 
-//this function may lead to issues as when a gameobject is reactived 
+//this function may lead to issues as when a gameobject is reactived
 //it activates all of its components
 void GameObject::setActive(bool state){
     if(isActive != state){

@@ -1,4 +1,4 @@
-#include "Camera.hpp"
+#include "Components/Camera.hpp"
 
 #include <iostream>
 #include <GL/glew.h>
@@ -6,7 +6,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <cmath>
 
-#include "Transform.hpp"
+#include "Components/Transform.hpp"
 
 using namespace Engine;
 

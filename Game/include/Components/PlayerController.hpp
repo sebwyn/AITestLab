@@ -3,8 +3,8 @@
 #include "Component.hpp"
 #include "WindowEventManager.hpp"
 #include "GameObject.hpp"
-#include "Transform.hpp"
-#include "Camera.hpp"
+#include "Components/Transform.hpp"
+#include "Components/Camera.hpp"
 #include <glm/glm.hpp>
 
 using namespace glm;

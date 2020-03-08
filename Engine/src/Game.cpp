@@ -1,7 +1,7 @@
 #include "Game.hpp"
 
 #include "Time.hpp"
-#include "Camera.hpp"
+#include "Components/Camera.hpp"
 #include "CollideableManager.hpp"
 
 using namespace Engine;

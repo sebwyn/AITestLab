@@ -1,7 +1,7 @@
 #pragma once
 
 #include "VAO.hpp"
-#include "Animator.hpp"
+#include "Components/Animator.hpp"
 
 #include <iostream>
 #include <string>
@@ -18,7 +18,7 @@ class ColladaLoader {
 public:
     static void loadModel(std::string file, VAO* vao);
     static void readController(xmlNode* controller, std::vector<unsigned int>& indices, std::vector<glm::vec3>& weights);
-    
+
     static Animation loadAnimation(std::string file, Skeleton sk);
     static Skeleton loadSkeleton(std::string file);
 private:

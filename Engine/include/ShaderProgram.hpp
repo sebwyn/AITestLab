@@ -23,11 +23,11 @@ public:
 
 	//necessary for static member init
 	ShaderProgram(){
-		std::cout << "Making empty program" << std::endl;	
+		std::cout << "Making empty program" << std::endl;
 	};
     ShaderProgram(const char* vPath, const char* fPath);
 	ShaderProgram(const char* vPath, const char* gPath, const char* fPath);
-	//use for transform feedbacks	
+	//use for transform feedbacks
 	ShaderProgram(const char* vPath, const char* gPath, const char* fPath, int count, const char** varyings);
 	~ShaderProgram();
     void start();
