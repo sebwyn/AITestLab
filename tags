@@ -73,6 +73,7 @@ FINDSRC	Engine/src/makefile	/^FINDSRC=$(shell find . -type f -name "*.cpp")$/;"	
 FINDSRC	Game/src/makefile	/^FINDSRC=$(shell find . -type f -name "*.cpp")$/;"	m
 FOV	Engine/include/Camera.hpp	/^    float FOV;$/;"	m	class:Engine::Camera
 FROM_COMPONENT	Engine/include/Component.hpp	/^#define FROM_COMPONENT$/;"	d
+FirstPersonController	Game/include/Components/FirstPersonController.hpp	/^class FirstPersonController : public Component, public WindowEventSubscriber{$/;"	c
 FirstPersonController	Game/include/FirstPersonController.hpp	/^class FirstPersonController : public Component, public WindowEventSubscriber{$/;"	c
 FirstPersonController	Game/src/Components/FirstPersonController.cpp	/^FirstPersonController::FirstPersonController() :$/;"	f	class:FirstPersonController
 Game	Engine/include/Game.hpp	/^    Game(){}$/;"	f	class:Engine::Game
@@ -109,6 +110,7 @@ POSTCOMPILE	Game/src/makefile	/^POSTCOMPILE = mv -f $(DEPDIR)\/$*.Td $(DEPDIR)\/
 PerlinNoise	Game/include/PerlinNoise.h	/^class PerlinNoise {$/;"	c
 PerlinNoise	Game/src/libsrc/PerlinNoise.cpp	/^PerlinNoise::PerlinNoise() {$/;"	f	class:PerlinNoise
 PerlinNoise	Game/src/libsrc/PerlinNoise.cpp	/^PerlinNoise::PerlinNoise(unsigned int seed) {$/;"	f	class:PerlinNoise
+PlayerController	Game/include/Components/PlayerController.hpp	/^class PlayerController : public Component, public WindowEventSubscriber{$/;"	c
 PlayerController	Game/include/PlayerController.hpp	/^class PlayerController : public Component, public WindowEventSubscriber{$/;"	c
 PlayerController	Game/src/Components/PlayerController.cpp	/^PlayerController::PlayerController() :$/;"	f	class:PlayerController
 Renderable	Engine/include/Renderable.hpp	/^class Renderable : public Component {$/;"	c	namespace:Engine
@@ -166,6 +168,7 @@ calcTranslation	Game/src/Components/FirstPersonController.cpp	/^void FirstPerson
 calcTranslation	Game/src/Components/PlayerController.cpp	/^void PlayerController::calcTranslation(float dt){$/;"	f	class:PlayerController
 calculateMatrices	Engine/src/Components/Camera.cpp	/^void Camera::calculateMatrices(){$/;"	f	class:Camera
 camera	Engine/include/Game.hpp	/^    GameObject* camera;$/;"	m	class:Engine::Game
+camera	Game/include/Components/PlayerController.hpp	/^    GameObject* camera;$/;"	m	class:PlayerController
 camera	Game/include/PlayerController.hpp	/^    GameObject* camera;$/;"	m	class:PlayerController
 children	Engine/include/Animator.hpp	/^    std::vector<unsigned int> children;$/;"	m	class:Engine::Bone
 children	Engine/include/GameObject.hpp	/^    std::vector<GameObject*> children;$/;"	m	class:Engine::GameObject
@@ -180,7 +183,7 @@ compileShader	Engine/src/ShaderProgram.cpp	/^GLuint ShaderProgram::compileShader
 components	Engine/include/GameObject.hpp	/^    std::vector<Component*> components;$/;"	m	class:Engine::GameObject
 contacts	Engine/include/CollideableManager.hpp	/^    std::vector<Contact> contacts; $/;"	m	struct:Engine::CollisionEvent
 created	Engine/include/GameObject.hpp	/^    bool created; \/\/set if allocated$/;"	m	class:Engine::GameObject
-cubeVAO	Game/include/MyGame.hpp	/^    Engine::VAO *cubeVAO, *playerVAO, *robotVAO;$/;"	m	class:MyGame
+cubeVAO	Game/include/MyGame.hpp	/^    Engine::VAO *cubeVAO;$/;"	m	class:MyGame
 cursorCallback	Engine/src/WindowEventManager.cpp	/^void cursorCallback(GLFWwindow* window, double xpos, double ypos){$/;"	f	namespace:Engine
 cursorEnabled	Engine/include/Window.hpp	/^    bool cursorEnabled;$/;"	m	class:Engine::Window
 data	Engine/include/CollideableManager.hpp	/^    static std::vector<dataNode> data;$/;"	m	class:Engine::CollideableManager
@@ -258,6 +261,7 @@ getWidth	Engine/include/Camera.hpp	/^    inline float getWidth() const {return w
 getWidth	Engine/include/Window.hpp	/^    inline int getWidth() const {return width;};$/;"	f	class:Engine::Window
 getWindow	Engine/include/Window.hpp	/^    inline GLFWwindow* getWindow() const {return window;};$/;"	f	class:Engine::Window
 grad	Game/src/libsrc/PerlinNoise.cpp	/^double PerlinNoise::grad(int hash, double x, double y, double z) {$/;"	f	class:PerlinNoise
+head	Game/include/Components/PlayerController.hpp	/^    GameObject* head;$/;"	m	class:PlayerController
 head	Game/include/PlayerController.hpp	/^    GameObject* head;$/;"	m	class:PlayerController
 height	Engine/include/Camera.hpp	/^    float width, height;$/;"	m	class:Engine::Camera
 height	Engine/include/Window.hpp	/^    int width, height;$/;"	m	class:Engine::Window
@@ -268,6 +272,8 @@ isActive	Engine/include/GameObject.hpp	/^    bool isActive;$/;"	m	class:Engine::
 isEnabled	Engine/include/Component.hpp	/^    bool isEnabled;$/;"	m	class:Engine::Component
 isShown	Engine/include/Renderable.hpp	/^    bool isShown;$/;"	m	class:Engine::Renderable
 keyCallback	Engine/src/WindowEventManager.cpp	/^void keyCallback(GLFWwindow* window,int key, int scancode, int action, int mods){$/;"	f	namespace:Engine
+lastTime	Game/include/Components/FirstPersonController.hpp	/^    float lastTime;$/;"	m	class:FirstPersonController
+lastTime	Game/include/Components/PlayerController.hpp	/^    float lastTime;$/;"	m	class:PlayerController
 lastTime	Game/include/FirstPersonController.hpp	/^    float lastTime;$/;"	m	class:FirstPersonController
 lastTime	Game/include/PlayerController.hpp	/^    float lastTime;$/;"	m	class:PlayerController
 lastUpdate	Engine/include/Time.hpp	/^    static std::chrono::time_point<std::chrono::high_resolution_clock> lastUpdate; $/;"	m	class:Engine::Time
@@ -292,8 +298,12 @@ matrix	Engine/include/Animator.hpp	/^    glm::mat4 matrix;$/;"	m	class:Engine::B
 matrix	Engine/include/Animator.hpp	/^    glm::mat4 matrix;$/;"	m	class:Engine::BoneTransform
 mouseClickCallback	Engine/src/WindowEventManager.cpp	/^void mouseClickCallback(GLFWwindow* window, int button, int action, int mod){$/;"	f	namespace:Engine
 mouseScrollCallback	Engine/src/WindowEventManager.cpp	/^void mouseScrollCallback(GLFWwindow* window, double xoffset, double yoffset){$/;"	f	namespace:Engine
+mouseSpeed	Game/include/Components/FirstPersonController.hpp	/^    float mouseSpeed;$/;"	m	class:FirstPersonController
+mouseSpeed	Game/include/Components/PlayerController.hpp	/^    float mouseSpeed;$/;"	m	class:PlayerController
 mouseSpeed	Game/include/FirstPersonController.hpp	/^    float mouseSpeed;$/;"	m	class:FirstPersonController
 mouseSpeed	Game/include/PlayerController.hpp	/^    float mouseSpeed;$/;"	m	class:PlayerController
+move	Game/include/Components/FirstPersonController.hpp	/^    vec3 move;$/;"	m	class:FirstPersonController
+move	Game/include/Components/PlayerController.hpp	/^    vec3 move;$/;"	m	class:PlayerController
 move	Game/include/FirstPersonController.hpp	/^    vec3 move;$/;"	m	class:FirstPersonController
 move	Game/include/PlayerController.hpp	/^    vec3 move;$/;"	m	class:PlayerController
 name	Engine/include/Animator.hpp	/^    std::string name; \/\/reference for potentially reversing keyframes$/;"	m	class:Engine::Bone
@@ -323,7 +333,6 @@ p	Game/include/PerlinNoise.h	/^	std::vector<int> p;$/;"	m	class:PerlinNoise
 parent	Engine/include/GameObject.hpp	/^    GameObject* parent;$/;"	m	class:Engine::GameObject
 parseJointLayer	Engine/src/ColladaLoader.cpp	/^unsigned int ColladaLoader::parseJointLayer(xmlNode* joint, glm::mat4 parentMat, std::vector<Bone> & bones, std::vector<std::string> jointNames, std::vector<glm::mat4> jointBinds, bool isRoot){$/;"	f	class:ColladaLoader
 penDepth	Engine/include/Collider.hpp	/^    float penDepth;$/;"	m	struct:Engine::Contact
-playerVAO	Game/include/MyGame.hpp	/^    Engine::VAO *cubeVAO, *playerVAO, *robotVAO;$/;"	m	class:MyGame
 pose	Engine/include/Animator.hpp	/^    std::vector<BoneTransform> pose;$/;"	m	struct:Engine::Keyframe
 position	Engine/include/Animator.hpp	/^    glm::vec3 position;$/;"	m	class:Engine::BoneTransform
 position	Engine/include/Transform.hpp	/^    glm::vec3 position;$/;"	m	class:Engine::Transform
@@ -345,14 +354,17 @@ render	Engine/src/Components/Renderable.cpp	/^void Renderable::render(glm::mat4 
 render	Engine/src/GameObject.cpp	/^void GameObject::render(glm::mat4 projection,glm::mat4 view){$/;"	f	class:GameObject
 render	Game/src/Components/DebugRenderable.cpp	/^void DebugRenderable::render(glm::mat4 projectionMatrix, glm::mat4 viewMatrix){$/;"	f	class:DebugRenderable
 right	Engine/include/Transform.hpp	/^    glm::vec3 right;$/;"	m	class:Engine::Transform
-robotVAO	Game/include/MyGame.hpp	/^    Engine::VAO *cubeVAO, *playerVAO, *robotVAO;$/;"	m	class:MyGame
 root	Engine/include/Animator.hpp	/^    unsigned int root;$/;"	m	struct:Engine::Skeleton
 root	Engine/include/Game.hpp	/^    GameObject* root;$/;"	m	class:Engine::Game
 rotate	Engine/src/Components/Transform.cpp	/^void Transform::rotate(float x, float y, float z){$/;"	f	class:Transform
+rotate	Game/include/Components/FirstPersonController.hpp	/^    vec2 rotate;$/;"	m	class:FirstPersonController
+rotate	Game/include/Components/PlayerController.hpp	/^    vec2 rotate;$/;"	m	class:PlayerController
 rotate	Game/include/FirstPersonController.hpp	/^    vec2 rotate;$/;"	m	class:FirstPersonController
 rotate	Game/include/PlayerController.hpp	/^    vec2 rotate;$/;"	m	class:PlayerController
 rotation	Engine/include/Animator.hpp	/^    glm::quat rotation;$/;"	m	class:Engine::BoneTransform
 rotation	Engine/include/Transform.hpp	/^    glm::quat rotation;$/;"	m	class:Engine::Transform
+rotationVector	Game/include/Components/FirstPersonController.hpp	/^    vec2 rotationVector;$/;"	m	class:FirstPersonController
+rotationVector	Game/include/Components/PlayerController.hpp	/^    vec2 rotationVector;$/;"	m	class:PlayerController
 rotationVector	Game/include/FirstPersonController.hpp	/^    vec2 rotationVector;$/;"	m	class:FirstPersonController
 rotationVector	Game/include/PlayerController.hpp	/^    vec2 rotationVector;$/;"	m	class:PlayerController
 run	Engine/src/Game.cpp	/^void Game::run(){$/;"	f	class:Game
@@ -381,11 +393,12 @@ setVAO	Engine/src/Components/Renderable.cpp	/^void Renderable::setVAO(VAO* _vao)
 setWindow	Engine/src/WindowEventManager.cpp	/^void WindowEventManager::setWindow(GLFWwindow* _window){$/;"	f	class:Engine::WindowEventManager
 shaderProgram	Engine/include/Renderable.hpp	/^    ShaderProgram* shaderProgram;$/;"	m	class:Engine::Renderable
 shouldClose	Engine/include/Window.hpp	/^    bool shouldClose;$/;"	m	class:Engine::Window
-simple	Game/include/MyGame.hpp	/^    Engine::ShaderProgram *simpleAnimated, *simple;$/;"	m	class:MyGame
-simpleAnimated	Game/include/MyGame.hpp	/^    Engine::ShaderProgram *simpleAnimated, *simple;$/;"	m	class:MyGame
+simple	Game/include/MyGame.hpp	/^    Engine::ShaderProgram *simple;$/;"	m	class:MyGame
 size	Engine/include/Transform.hpp	/^    glm::vec3 size;$/;"	m	class:Engine::Transform
 size	Game/include/Chunk.hpp	/^    unsigned int size;$/;"	m	class:Chunk
 skel	Engine/include/Animator.hpp	/^    Skeleton skel;$/;"	m	class:Engine::Animator
+speed	Game/include/Components/FirstPersonController.hpp	/^    float speed;$/;"	m	class:FirstPersonController
+speed	Game/include/Components/PlayerController.hpp	/^    float speed;$/;"	m	class:PlayerController
 speed	Game/include/FirstPersonController.hpp	/^    float speed;$/;"	m	class:FirstPersonController
 speed	Game/include/PlayerController.hpp	/^    float speed;$/;"	m	class:PlayerController
 splatIndices	Game/include/Chunk.hpp	/^    static Engine::ShaderProgram* splatIndices;$/;"	m	class:Chunk
@@ -415,6 +428,8 @@ texture	Game/include/DebugRenderable.hpp	/^    GLuint texture;$/;"	m	class:Debug
 time	Engine/include/Animator.hpp	/^    float time;$/;"	m	struct:Engine::Keyframe
 transform	Engine/include/Animator.hpp	/^    BoneTransform transform; \/\/stores current position in local space $/;"	m	class:Engine::Bone
 translate	Engine/src/Components/Transform.cpp	/^void Transform::translate(float x, float y, float z){$/;"	f	class:Transform
+translationVector	Game/include/Components/FirstPersonController.hpp	/^    vec3 translationVector;$/;"	m	class:FirstPersonController
+translationVector	Game/include/Components/PlayerController.hpp	/^    vec3 translationVector;$/;"	m	class:PlayerController
 translationVector	Game/include/FirstPersonController.hpp	/^    vec3 translationVector;$/;"	m	class:FirstPersonController
 translationVector	Game/include/PlayerController.hpp	/^    vec3 translationVector;$/;"	m	class:PlayerController
 unSubscribe	Engine/src/WindowEventManager.cpp	/^void WindowEventSubscriber::unSubscribe(WindowEventManager::events eventList){$/;"	f	class:Engine::WindowEventSubscriber

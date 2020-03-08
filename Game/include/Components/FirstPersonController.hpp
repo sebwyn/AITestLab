@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "Component.hpp"
 #include "WindowEventManager.hpp"
 #include "GameObject.hpp"
