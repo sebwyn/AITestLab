@@ -1,7 +1,7 @@
 #include "GameObject.hpp"
 
-#include "Renderable.hpp"
-#include "Transform.hpp"
+#include "Components/Renderable.hpp"
+#include "Components/Transform.hpp"
 
 #include <iostream>
 

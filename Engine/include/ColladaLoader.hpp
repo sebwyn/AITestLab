@@ -1,7 +1,7 @@
 #pragma once
 
 #include "VAO.hpp"
-#include "Animator.hpp"
+#include "Components/Animator.hpp"
 
 #include <iostream>
 #include <string>

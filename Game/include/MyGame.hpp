@@ -1,6 +1,5 @@
 #include "Game.hpp"
 
-#include "Animator.hpp"
 #include "ShaderProgram.hpp"
 #include "VAO.hpp"
 
@@ -11,10 +10,6 @@ public:
     virtual void update();
 private:
     
-    Engine::ShaderProgram *simpleAnimated, *simple;
-    Engine::VAO *cubeVAO, *playerVAO, *robotVAO;
-
-    void addJointInPose(Engine::Skeleton sk, std::vector<Engine::BoneTransform> pose, Engine::Bone* b, glm::mat4 parent);
-    //this is inherited from Engine::Game
-    //Engine::GameObject* root;
+    Engine::ShaderProgram *simple;
+    Engine::VAO *cubeVAO;
 };

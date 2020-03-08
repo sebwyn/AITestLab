@@ -1,7 +1,7 @@
-#include "Animator.hpp"
+#include "Components/Animator.hpp"
 
 #include "Time.hpp"
-#include "Renderable.hpp"
+#include "Components/Renderable.hpp"
 
 #include <cmath>
 

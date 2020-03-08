@@ -1,8 +1,8 @@
-#include "Renderable.hpp"
+#include "Components/Renderable.hpp"
 
 #include <iostream>
 
-#include "Transform.hpp"
+#include "Components/Transform.hpp"
 
 using namespace Engine;
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Collider.hpp"
+#include "Components/Collider.hpp"
 
 namespace Engine {
 

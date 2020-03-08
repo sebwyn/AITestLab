@@ -1,4 +1,4 @@
-#include "Collider.hpp"
+#include "Components/Collider.hpp"
 #include "CollideableManager.hpp"
 
 #include <iostream>
