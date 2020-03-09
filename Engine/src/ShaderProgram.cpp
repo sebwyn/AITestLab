@@ -11,11 +11,11 @@ ShaderProgram::ShaderProgram(const char* vPath, const char* fPath){
 }
 
 ShaderProgram::ShaderProgram(const char* vPath, const char* gPath, const char* fPath){
-    programID = loadShader(vPath, fPath, gPath, 0, NULL);    
+    programID = loadShader(vPath, fPath, gPath, 0, NULL);
 }
 
 ShaderProgram::ShaderProgram(const char* vPath, const char* gPath, const char* fPath, int count, const char** varyings){
-    programID = loadShader(vPath, fPath, gPath, count, varyings);    
+    programID = loadShader(vPath, fPath, gPath, count, varyings);
 }
 
 ShaderProgram::~ShaderProgram(){
@@ -64,13 +64,13 @@ void ShaderProgram::setUniformMat4(glm::mat4 matrix, std::string uniformName){
 
 void ShaderProgram::setUniformMat4Array(std::vector<glm::mat4> matrices, std::string uniformName){
     start();
-    GLuint uniformID = glGetUniformLocation(programID, uniformName.c_str()); 
+    GLuint uniformID = glGetUniformLocation(programID, uniformName.c_str());
     glUniformMatrix4fv(uniformID, matrices.size(), GL_FALSE, glm::value_ptr(matrices[0]));
 }
 
 GLuint ShaderProgram::compileShader(GLenum type, const char* source){
     GLuint shaderID = glCreateShader(type);
-    
+
     std::string shaderCode;
 	std::ifstream shaderStream(source, std::ios::in);
 	if(shaderStream.is_open()){
@@ -106,24 +106,24 @@ GLuint ShaderProgram::compileShader(GLenum type, const char* source){
 GLuint ShaderProgram::loadShader(const char* vPath, const char* fPath, const char* gPath, unsigned int count, const char** varyings){
     bool hasGeo = false;
     if(strlen(gPath) != 0){
-        hasGeo = true; 
+        hasGeo = true;
     }
-    
-    GLuint vertexShaderID = compileShader(GL_VERTEX_SHADER, vPath); 
+
+    GLuint vertexShaderID = compileShader(GL_VERTEX_SHADER, vPath);
     GLuint fragmentShaderID = compileShader(GL_FRAGMENT_SHADER, fPath);
     GLuint geometryShaderID; //this is an optional variable
     if(vertexShaderID == 0 || fragmentShaderID == 0){
-        return 0;     
+        return 0;
     }
 
 	GLuint ProgramID = glCreateProgram();
     if(varyings){
-        glTransformFeedbackVaryings(ProgramID, count, varyings, GL_SEPARATE_ATTRIBS); 
+        glTransformFeedbackVaryings(ProgramID, count, varyings, GL_SEPARATE_ATTRIBS);
     }
 	if(hasGeo){
         geometryShaderID = compileShader(GL_GEOMETRY_SHADER, gPath);
         if(geometryShaderID == 0){
-            return 0;    
+            return 0;
         }
         glAttachShader(ProgramID, geometryShaderID);
     }
@@ -132,7 +132,7 @@ GLuint ShaderProgram::loadShader(const char* vPath, const char* fPath, const cha
     glAttachShader(ProgramID, vertexShaderID);
 	glAttachShader(ProgramID, fragmentShaderID);
 	glLinkProgram(ProgramID);
-    
+
     GLint Result = GL_FALSE;
     int InfoLogLength;
 

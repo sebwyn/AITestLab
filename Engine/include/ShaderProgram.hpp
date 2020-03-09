@@ -15,6 +15,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
+
 namespace Engine {
 
 class ShaderProgram {
@@ -38,6 +39,7 @@ public:
     void setUniformVec3(glm::vec3 v, std::string uniformName);
     void setUniformMat4(glm::mat4 matrix, std::string uniformName);
 	void setUniformMat4Array(std::vector<glm::mat4> matrices,std::string uniformName);
+
 private:
 	GLuint compileShader(GLenum type, const char* source);
     GLuint loadShader(const char* vPath, const char* fPath, const char* gPath, unsigned int count, const char** varyings);

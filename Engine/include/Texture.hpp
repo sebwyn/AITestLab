@@ -6,11 +6,17 @@
 
 #include <glm/glm.hpp>
 
-#include "stb_image.h"
-
-class Texture2D {
+class Texture {
 public:
-    Texture2D(const char* path);
-    void bind();
+    Texture(const char* path);
+    ~Texture();
+
+    void bind(int index);
+
+    int getWidth();
+    int getHeight();
+
 private:
+    unsigned int texture;
+    int width, height, nrChannels;
 };

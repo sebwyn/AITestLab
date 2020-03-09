@@ -11,8 +11,4 @@ public:
     virtual void update();
 private:
 
-    Engine::VAO *cubeVAO;
-
-    //this is inherited from Engine::Game
-    //Engine::GameObject* root;
 };

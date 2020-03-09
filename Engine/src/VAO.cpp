@@ -22,7 +22,7 @@ void VAO::addGLFloatBuffer(int attrib, GLuint buffer, int entries, int entrySize
     bind();
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
     glVertexAttribPointer(
-        attrib, 
+        attrib,
         entrySize,
         GL_FLOAT,
         GL_FALSE,
@@ -55,7 +55,7 @@ void VAO::addGLIntBuffer(int attrib, GLuint buffer, int entries, int entrySize){
 
 void VAO::addGLElementBuffer(GLuint buffer, int entries){
     vertexCount = entries;
-    
+
     bind();
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffer);
     unbind();
@@ -126,7 +126,6 @@ void VAO::draw() const{
     bind();
     enableAttribs();
     if (ebo > 0) {
-        std::cout << "What the fuck" << std::endl;
         glDrawElements(GL_TRIANGLES, vertexCount, GL_UNSIGNED_SHORT, 0);
     }else{
         glDrawArrays(GL_TRIANGLES, 0, vertexCount);
@@ -136,6 +135,7 @@ void VAO::draw() const{
 }
 
 void VAO::enableAttribs() const{
+    //std::cout << attribs.size() << std::endl;
     for(int i = 0; i < attribs.size(); i++){
         glEnableVertexAttribArray(attribs[i]);
     }

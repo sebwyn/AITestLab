@@ -17,16 +17,27 @@ TileChunkRenderable::TileChunkRenderable(VAO* _vao)
                                       "../Shaders/TileChunk/frag.glsl");
 }
 
+TileChunkRenderable::~TileChunkRenderable(){
+}
+
 void TileChunkRenderable::render(glm::mat4 projectionMatrix, glm::mat4 viewMatrix){
     if(isShown){
         //std::cout << "Rendering: " << object->getName() << std::endl;
         glm::mat4 newModelMatrix = ((Transform*)object->getComponent("transform"))->calcModelMatrix();
         shaderProgram->start();
 
+        shaderProgram->setUniformInt(0,"texture1");
+
         shaderProgram->setUniformMat4(newModelMatrix,"M");
         shaderProgram->setUniformMat4(viewMatrix,"V");
         shaderProgram->setUniformMat4(projectionMatrix,"P");
 
+        texture->bind(0);
+
         vao->draw();
     }
+}
+
+void TileChunkRenderable::addTexture(Texture* tex){
+    texture = tex;
 }

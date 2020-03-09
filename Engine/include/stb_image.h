@@ -111,8 +111,7 @@ RECENT REVISION HISTORY:
     Blazej Dariusz Roszkowski                  Alexander Veselov
 */
 
-#ifndef STBI_INCLUDE_STB_IMAGE_H
-#define STBI_INCLUDE_STB_IMAGE_H
+#pragma once
 
 // DOCUMENTATION
 //
@@ -488,7 +487,6 @@ STBIDEF int   stbi_zlib_decode_noheader_buffer(char *obuffer, int olen, const ch
 
 #ifdef __cplusplus
 }
-#endif
 
 //
 //

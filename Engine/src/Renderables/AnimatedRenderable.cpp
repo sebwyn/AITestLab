@@ -14,7 +14,8 @@ AnimatedRenderable::AnimatedRenderable()
 AnimatedRenderable::AnimatedRenderable(VAO* _vao)
     : Renderable() {
     vao = _vao;
-    shaderProgram = new ShaderProgram("../../Engine/Shaders/AnimatedSimple.vs", "../../Engine/Shaders/simple.fs");
+    shaderProgram = new ShaderProgram("../../Engine/Shaders/Animated/vert.glsl",
+                                      "../../Engine/Shaders/Simple/frag.glsl");
 }
 
 void AnimatedRenderable::render(glm::mat4 projectionMatrix, glm::mat4 viewMatrix){

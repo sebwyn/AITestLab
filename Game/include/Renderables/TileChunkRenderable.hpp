@@ -2,6 +2,7 @@
 
 #include "ShaderProgram.hpp"
 #include "VAO.hpp"
+#include "Texture.hpp"
 
 #include "Component.hpp"
 
@@ -17,9 +18,13 @@ public:
     TileChunkRenderable();
     TileChunkRenderable(VAO* _vao);
 
+    ~TileChunkRenderable();
+
+
     virtual void render(glm::mat4 projectionMatrix, glm::mat4 viewMatrix);
 
+    void addTexture(Texture* tex);
+
 private:
-
-
+    Texture* texture;
 };
