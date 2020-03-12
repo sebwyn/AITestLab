@@ -25,6 +25,11 @@ public:
 
     void addTexture(Texture* tex);
 
+    void setSheetSize(int w, int h);
+    void setTile(int x, int y);
+
 private:
+    glm::vec2 tileSize;
+    glm::ivec2 tile;
     Texture* texture;
 };

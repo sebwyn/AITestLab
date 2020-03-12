@@ -45,11 +45,24 @@ void ShaderProgram::setUniformFloat(float data, std::string uniformName){
     glUniform1f(uniformID, data);
 }
 
+void ShaderProgram::setUniformIVec2(glm::ivec2 v, std::string uniformName){
+    start();
+    GLuint uniformID = glGetUniformLocation(programID, uniformName.c_str());
+    glUniform2iv(uniformID, 1, &v[0]);
+}
+
+void ShaderProgram::setUniformVec2(glm::vec2 v, std::string uniformName){
+    start();
+    GLuint uniformID = glGetUniformLocation(programID, uniformName.c_str());
+    glUniform2fv(uniformID, 1, &v[0]);
+}
+
 void ShaderProgram::setUniformIVec3(glm::ivec3 v, std::string uniformName){
     start();
     GLuint uniformID = glGetUniformLocation(programID, uniformName.c_str());
     glUniform3iv(uniformID, 1, &v[0]);
 }
+
 void ShaderProgram::setUniformVec3(glm::vec3 v, std::string uniformName){
     start();
     GLuint uniformID = glGetUniformLocation(programID, uniformName.c_str());

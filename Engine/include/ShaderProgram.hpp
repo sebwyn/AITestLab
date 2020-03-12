@@ -35,6 +35,8 @@ public:
     void remove();
 	void setUniformInt(int data, std::string uniformName);
 	void setUniformFloat(float data, std::string uniformName);
+	void setUniformIVec2(glm::ivec2 v, std::string uniformName);
+    void setUniformVec2(glm::vec2 v, std::string uniformName);
 	void setUniformIVec3(glm::ivec3 v, std::string uniformName);
     void setUniformVec3(glm::vec3 v, std::string uniformName);
     void setUniformMat4(glm::mat4 matrix, std::string uniformName);
