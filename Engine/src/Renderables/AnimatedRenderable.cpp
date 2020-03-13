@@ -21,7 +21,7 @@ AnimatedRenderable::AnimatedRenderable(VAO* _vao)
 void AnimatedRenderable::render(glm::mat4 projectionMatrix, glm::mat4 viewMatrix){
     if(isShown){
         //std::cout << "Rendering: " << object->getName() << std::endl;
-        glm::mat4 newModelMatrix = ((Transform*)object->getComponent("transform"))->calcModelMatrix();
+        glm::mat4 newModelMatrix = object->transform->calcModelMatrix();
         shaderProgram->start();
         if(bones.size() > 0){
             shaderProgram->setUniformMat4Array(bones, "boneTransforms");

@@ -4,6 +4,8 @@
 
 #include "Component.hpp"
 
+#include "Components/Transform.hpp"
+
 namespace Engine {
 
 class Camera : public Component {
@@ -32,6 +34,9 @@ public:
     void lookAt(float x, float y, float z);
     void disableLookAt();
 
+    void ortho();
+    void perspective();
+
     virtual void start();
     virtual void lateUpdate();
 
@@ -41,7 +46,11 @@ public:
     inline float getWidth() const {return width;};
     inline float getHeight() const {return height;};
 private:
-    void calculateMatrices();
+    bool isOrtho;
+    void updateViewMatrix();
+    void updateProjectionMatrix();
+
+    void updateLookAt();
 };
 
 }

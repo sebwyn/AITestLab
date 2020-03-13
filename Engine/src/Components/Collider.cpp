@@ -34,7 +34,7 @@ void Collider::update(){
 }
 
 void Collider::collision_update(){
-    Transform* objTransform = (Transform*)object->getComponent("transform");
+    Transform* objTransform = object->transform;
     glm::mat4 m = objTransform->calcModelMatrix() * glm::scale(glm::mat4(1.0), dimensions);
     verts[0] = glm::vec3(m*glm::vec4(-1, -1, -1, 1));
     verts[1] = glm::vec3(m*glm::vec4(-1, -1,  1, 1));
@@ -58,8 +58,8 @@ float calcOverlap(float min1, float max1, float min2, float max2){
 std::vector<Contact> Collider::didCollide(Collider* o_col){
     std::vector<Contact> contacts;
 
-    Transform* m_trans = (Transform*)object->getComponent("transform");
-    Transform* o_trans = (Transform*)o_col->getObject()->getComponent("transform");
+    Transform* m_trans = object->transform;
+    Transform* o_trans = o_col->object->transform;
 
     bool collide = true;
     std::vector<glm::vec3>

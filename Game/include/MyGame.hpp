@@ -10,5 +10,6 @@ public:
     virtual void start();
     virtual void update();
 private:
+    Engine::GameObject* sprite;
 
 };

@@ -14,6 +14,7 @@ out vec2 TexCoord;
 
 void main()
 {
+    // gl_Position = P*V*M * vec4(aPos, 1.0);
     gl_Position = P*V*M * vec4(aPos, 1.0);
     TexCoord = vec2((tile.x*tileSize.x)+(aTexCoord.x*tileSize.x),(tile.y*tileSize.y)+(aTexCoord.y*tileSize.y));
 }

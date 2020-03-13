@@ -31,13 +31,10 @@ void Game::init(){
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
     //glEnable(GL_CULL_FACE);
-
-	std::cout << glGetString(GL_VERSION) << std::endl;
 }
 
 void Game::cleanup(){
 	delete win;
-	delete camera;
 	delete root;
 }
 
@@ -58,6 +55,7 @@ void Game::mainloop(){
 			}
 
 			Time::update();
+			update();
 
 			Camera* mainCam = (Camera*)camera->getComponent("camera");
 			mainCam->updateAspect(win->getWidth(), win->getHeight());

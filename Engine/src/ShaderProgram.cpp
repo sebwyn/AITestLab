@@ -141,7 +141,6 @@ GLuint ShaderProgram::loadShader(const char* vPath, const char* fPath, const cha
         glAttachShader(ProgramID, geometryShaderID);
     }
 	printf("Linking program\n");
-    std::cout << ProgramID << std::endl;
     glAttachShader(ProgramID, vertexShaderID);
 	glAttachShader(ProgramID, fragmentShaderID);
 	glLinkProgram(ProgramID);

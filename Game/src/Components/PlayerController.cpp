@@ -23,8 +23,8 @@ PlayerController::PlayerController() :
 }
 
 void PlayerController::onKey(int key, int scancode, int action, int mods) {
-    vec3 fv = ((Transform*)object->getComponent("transform"))->getForward();
-    vec3 rv = ((Transform*)object->getComponent("transform"))->getRight();
+    vec3 fv = object->transform->getForward();
+    vec3 rv = object->transform->getRight();
     if (action == GLFW_PRESS){
         switch(key){
             case GLFW_KEY_W:
@@ -85,8 +85,8 @@ void PlayerController::onCursorMove(double xpos, double ypos) {
 void PlayerController::calcTranslation(float dt){
     if (length(move) <= 0){ translationVector = vec3(0); return;}
 
-    vec3 forward = ((Transform*)object->getComponent("transform"))->getForward();
-    vec3 right = ((Transform*)object->getComponent("transform"))->getRight();
+    vec3 forward = object->transform->getForward();
+    vec3 right = object->transform->getRight();
 
     translationVector = (move.x*right) + (move.y*vec3(0,1,0)) + (move.z*forward);
     translationVector = normalize(translationVector) * speed * dt;
@@ -112,8 +112,8 @@ void PlayerController::start(){
 
 void PlayerController::update(){
     float deltaTime = float(glfwGetTime()-lastTime);
-    Transform* objTf = (Transform*)object->getComponent("transform");
-    Transform* headTF = (Transform*)head->getComponent("transform");
+    Transform* objTf = object->transform;
+    Transform* headTF = head->transform;
 
     calcRotation(deltaTime);
     objTf->setRotation(0,rotationVector.y,0);

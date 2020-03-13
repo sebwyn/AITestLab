@@ -21,11 +21,9 @@ Texture::Texture(const char* path){
     {
         switch (nrChannels) {
             case 3:
-                std::cout << "rgb" << '\n';
                 glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
                 break;
             case 4:
-                std::cout << "rgba" << '\n';
                 glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
                 break;
         }

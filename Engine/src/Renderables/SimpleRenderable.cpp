@@ -21,7 +21,7 @@ SimpleRenderable::SimpleRenderable(VAO* _vao)
 void SimpleRenderable::render(glm::mat4 projectionMatrix, glm::mat4 viewMatrix){
     if(isShown){
         //std::cout << "Rendering: " << object->getName() << std::endl;
-        glm::mat4 newModelMatrix = ((Transform*)object->getComponent("transform"))->calcModelMatrix();
+        glm::mat4 newModelMatrix = object->transform->calcModelMatrix();
         shaderProgram->start();
 
         shaderProgram->setUniformVec3(color, "c");

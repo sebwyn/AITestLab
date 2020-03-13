@@ -3,7 +3,6 @@
 #include "Components/Renderable.hpp"
 #include "Components/Transform.hpp"
 
-#include <iostream>
 
 using namespace Engine;
 
@@ -11,18 +10,14 @@ GameObject::GameObject(std::string _name, bool _isActive){
     name = _name;
     isActive = _isActive;
     parent = NULL;
-    created = false;
 
     //every GameObject has a transform
-    Component* transform = new Transform();
-    attachComponent(transform);
+    transform = new Transform(this);
 }
 
 GameObject::~GameObject(){
     for(auto & child : children){
-    if(child->created){
         delete child;
-        }
     }
     for(auto & component : components){
         delete component;
@@ -31,6 +26,8 @@ GameObject::~GameObject(){
    	//parent->removeChild(this);
     //if there is a parent object potentially throw some kind've error
     }
+    std::cout << "deleted " << name << '\n';
+    delete transform;
 }
 
 void GameObject::attachComponent(Component* c){

@@ -21,8 +21,8 @@ FirstPersonController::FirstPersonController() :
 }
 
 void FirstPersonController::onKey(int key, int scancode, int action, int mods) {
-    vec3 fv = ((Transform*)object->getComponent("transform"))->getForward();
-    vec3 rv = ((Transform*)object->getComponent("transform"))->getRight();
+    vec3 fv = object->transform->getForward();
+    vec3 rv = object->transform->getRight();
     if (action == GLFW_PRESS){
         switch(key){
             case GLFW_KEY_W:
@@ -84,8 +84,8 @@ void FirstPersonController::onCursorMove(double xpos, double ypos) {
 void FirstPersonController::calcTranslation(float dt){
     if (length(move) <= 0){ translationVector = vec3(0); return;}
 
-    vec3 forward = ((Transform*)object->getComponent("transform"))->getForward();
-    vec3 right = ((Transform*)object->getComponent("transform"))->getRight();
+    vec3 forward = object->transform->getForward();
+    vec3 right = object->transform->getRight();
 
     translationVector = (move.x*right) + (move.y*vec3(0,1,0)) + (move.z*forward);
     translationVector = normalize(translationVector) * speed * dt;
@@ -109,7 +109,7 @@ void FirstPersonController::start(){
 
 void FirstPersonController::update(){
     float deltaTime = float(glfwGetTime()-lastTime);
-    Transform* objTf = ((Transform*)object->getComponent("transform"));
+    Transform* objTf = object->transform;
 
     calcRotation(deltaTime);
     objTf->setRotation(rotationVector.x,rotationVector.y,0);

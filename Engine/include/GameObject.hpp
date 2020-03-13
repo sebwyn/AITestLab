@@ -4,10 +4,13 @@
 #include <string>
 #include <glm/glm.hpp>
 
+#include <iostream>
+
 namespace Engine {
 class GameObject;
 }
 
+#include "Components/Transform.hpp"
 #include "Component.hpp"
 
 namespace Engine {
@@ -36,19 +39,20 @@ public:
     GameObject* clone(); //this is the primary method of instantiating a GameObject
 
     //TO DO: Figure out what properties should definetly be private
-    bool created; //set if allocated
 
     std::vector<GameObject*> children;
     std::vector<Component*> components;
-    
+
     GameObject* getParent(){return parent;}
     void setParent(GameObject* _parent);
-    
+
     std::string getName(){return name;}
- 
-    bool getActive(){return isActive;} 
+
+    bool getActive(){return isActive;}
     void setActive(bool state);
- 
+
+    Transform* transform;
+
 private:
     GameObject* parent;
     std::string name;

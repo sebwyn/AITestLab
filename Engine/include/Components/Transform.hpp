@@ -1,18 +1,24 @@
 #pragma once
 
-#include "Component.hpp"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/quaternion.hpp>
 
 namespace Engine {
+    class Transform;
+}
 
-class Transform : public Component {
+#include "GameObject.hpp"
+
+namespace Engine {
+
+class Transform {
 private:
     void calcDirectionVectors();
 public:
 
-    Transform();
+    Transform(GameObject* _object);
+    ~Transform();
 
     void translate(float x, float y, float z);
     void rotate(float x, float y, float z);
@@ -23,6 +29,8 @@ public:
     void setRotation(glm::quat _rotation);
 
 	void setScale(float x, float y, float z);
+
+    bool hasMoved();
 
     inline glm::vec3 getPosition() const {return position;}
     inline glm::quat getRotation() const {return rotation;}
@@ -43,6 +51,10 @@ private:
     glm::vec3 forward;
     glm::vec3 right;
     glm::vec3 up;
+
+    bool moved;
+
+    GameObject* object;
 };
 
 }

@@ -7,16 +7,23 @@
 
 using namespace Engine;
 
-Transform::Transform() : Component(std::string("transform")) {
-    position = glm::vec3(0, 0, 0);
-    rotation = glm::vec3(0, 0, 0);
-    size = glm::vec3(1, 1, 1);
-    forward = glm::vec3(0,0,1);
-    right = glm::vec3(-1,0,0);
+Transform::Transform(GameObject* _object){
+     object = _object;
+     position = glm::vec3(0, 0, 0);
+     rotation = glm::vec3(0, 0, 0);
+     size = glm::vec3(1, 1, 1);
+     forward = glm::vec3(0,0,1);
+     right = glm::vec3(-1,0,0);
+     moved = false;
+}
+
+Transform::~Transform(){
+    std::cout << "deleted transform" << '\n';
 }
 
 void Transform::translate(float x, float y, float z){
     position += glm::vec3(x, y, z);
+    moved = true;
 }
 
 void Transform::rotate(float x, float y, float z){
@@ -31,6 +38,8 @@ void Transform::scale(float x, float y, float z){
 
 void Transform::setPosition(float x, float y, float z){
     position = glm::vec3(x, y, z);
+    moved = true;
+    std::cout << "Set Pos Position: " << &position << std::endl;
 }
 
 void Transform::setRotation(float x, float y, float z){
@@ -47,13 +56,13 @@ void Transform::setScale(float x, float y, float z){
     size = glm::vec3(x, y, z);
 }
 
-glm::vec3 Transform::calcGlobalPosition(){
+glm::vec3 Transform::calcGlobalPosition() {
     return glm::vec3(calcModelMatrix()*glm::vec4(0, 0, 0, 1));
 }
 
 glm::quat Transform::calcGlobalRotation(){
     if(object->getParent()){
-        return rotation * ((Transform*)object->getParent()->getComponent("transform"))->calcGlobalRotation();
+        return rotation * object->getParent()->transform->calcGlobalRotation();
     } else {
         return rotation;
     }
@@ -61,7 +70,7 @@ glm::quat Transform::calcGlobalRotation(){
 
 glm::vec3 Transform::calcGlobalScale(){
     if(object->getParent()){
-        return size * ((Transform*)object->getParent()->getComponent("transform"))->calcGlobalScale();
+        return size * object->getParent()->transform->calcGlobalScale();
     } else {
         return size;
     }
@@ -77,16 +86,25 @@ void Transform::calcDirectionVectors(){
 }
 
 glm::mat4 Transform::calcModelMatrix(){
-
     glm::mat4 modelMatrix = glm::mat4(1.0);
     glm::mat4 transMat  = glm::translate(glm::mat4(1.0), position);
     glm::mat4 rotMat = glm::mat4_cast(rotation);
     glm::mat4 scaleMat = glm::scale(glm::mat4(1.0), size);
     modelMatrix = transMat * rotMat * scaleMat;
 
-    if(object->getParent() != NULL){
-    return ((Transform*)object->getParent()->getComponent("transform"))->calcModelMatrix() * modelMatrix;
+    if(object->getParent()){
+        return object->getParent()->transform->calcModelMatrix() * modelMatrix;
     } else {
          return modelMatrix;
+    }
+}
+
+bool Transform::hasMoved(){
+    if(object->getParent() && !moved){
+        return object->getParent()->transform->hasMoved();
+    } else {
+        bool m = moved;
+        moved = false;
+        return m;
     }
 }

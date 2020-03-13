@@ -10,6 +10,6 @@ uniform mat4 P;
 out vec3 fragNormal;
 
 void main(){
-    gl_Position = P*V*M * vec4(vertexPosition_modelspace, 1.0);
+    gl_Position = P*M * vec4(vertexPosition_modelspace, 1.0);
     fragNormal = normalize(M * vec4(vertexNormal,0.0)).xyz;
 }
