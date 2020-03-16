@@ -1,8 +1,7 @@
 #pragma once
 
-#include "Component.hpp"
+#include "ECS.hpp"
 #include "WindowEventManager.hpp"
-#include "GameObject.hpp"
 #include "Components/Transform.hpp"
 #include "Components/Camera.hpp"
 #include <glm/glm.hpp>
@@ -12,20 +11,21 @@ using namespace Engine;
 
 class FirstPersonController : public Component, public WindowEventSubscriber{
 private:
-    float lastTime;
 
-    float speed;
-    float mouseSpeed;
+    float speed = 1;
+    float mouseSpeed = 0.3;
 
-    vec2 rotate;
-    vec3 move;
+    float lastTime = 0;
 
-    vec3 translationVector;
-    vec2 rotationVector;
+    vec2 rotate = vec2(0,0);
+    vec3 move = vec3(0,0,0);
+
+    vec3 translationVector = vec3(0,0,0);
+    vec2 rotationVector = vec2(0,180);
 public:
     FirstPersonController();
 
-    virtual void start();
+    virtual void init();
     virtual void update();
 
 private:

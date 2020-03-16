@@ -1,4 +1,5 @@
 #include "Components/Camera.hpp"
+#include "Components/Transform.hpp"
 
 #include <iostream>
 #include <GL/glew.h>
@@ -9,17 +10,6 @@
 
 using namespace Engine;
 
-Camera::Camera(float _width, float _height)
- : Component(std::string("camera")) {
-
-    FOV = 90;
-    width = _width;
-    height = _height;
-    lookAtState = lookAtMode::DISABLED;
-    viewDirection = glm::vec3(0,0,1);
-    isOrtho = false;
-
-}
 
 void Camera::setFOV(float fov){
     FOV = fov;
@@ -34,35 +24,35 @@ void Camera::updateAspect(float _width, float _height){
     updateProjectionMatrix();
 }
 
-void Camera::start(){
+void Camera::init(){
     //lateUpdate();
 }
 
-void Camera::lateUpdate(){
+void Camera::update(){
     updateLookAt();
     updateViewMatrix();
 }
 
 void Camera::updateLookAt(){
     glm::vec3 target;
-    glm::vec3 position = object->transform->calcGlobalPosition();
+    glm::vec3 position = entity->getComponent<Transform>().getPosition();
     switch (lookAtState){
         case lookAtMode::POINT:
             viewDirection = glm::normalize(targetPoint-position);
             break;
-        case lookAtMode::OBJECT:
-            target = targetObject->transform->calcGlobalPosition();
+        case lookAtMode::ENTITY:
+            target = targetEntity->getComponent<Transform>().getPosition();
             viewDirection = glm::normalize(target-position);
             break;
         case lookAtMode::DISABLED:
-            viewDirection = object->transform->getForward();
+            viewDirection = entity->getComponent<Transform>().getForward();
             break;
     }
 }
 
-void Camera::lookAt(GameObject* _object){
-    lookAtState = lookAtMode::OBJECT;
-    targetObject = _object;
+void Camera::lookAt(Entity* _entity){
+    lookAtState = lookAtMode::ENTITY;
+    targetEntity = _entity;
 }
 
 void Camera::lookAt(float x, float y, float z){
@@ -75,7 +65,7 @@ void Camera::disableLookAt(){
 }
 
 void Camera::updateViewMatrix(){
-    glm::vec3 position = object->transform->calcGlobalPosition();
+    glm::vec3 position = entity->getComponent<Transform>().getPosition();
     viewMatrix = glm::lookAt(position,
                                     position+viewDirection,
                                     glm::vec3(0,1,0));

@@ -2,27 +2,16 @@
 
 using namespace Engine;
 
-FirstPersonController::FirstPersonController() :
-    Component(std::string("firstperson-controller")), WindowEventSubscriber() {
+FirstPersonController::FirstPersonController() 
+    :WindowEventSubscriber() {
 
     WindowEventSubscriber::subscribe(WindowEventManager::events::KEYBOARD_INPUT);
     WindowEventSubscriber::subscribe(WindowEventManager::events::CURSOR_POSITION);
-
-    speed = 1;
-    mouseSpeed = 0.3;
-
-    lastTime = 0;
-
-    rotate = vec2(0,0);
-    move = vec3(0,0,0);
-
-    translationVector = vec3(0,0,0);
-    rotationVector = vec2(0,180);
 }
 
 void FirstPersonController::onKey(int key, int scancode, int action, int mods) {
-    vec3 fv = object->transform->getForward();
-    vec3 rv = object->transform->getRight();
+    vec3 fv = entity->getComponent<Transform>().getForward();
+    vec3 rv = entity->getComponent<Transform>().getRight();
     if (action == GLFW_PRESS){
         switch(key){
             case GLFW_KEY_W:
@@ -73,8 +62,8 @@ void FirstPersonController::onKey(int key, int scancode, int action, int mods) {
 }
 
 void FirstPersonController::onCursorMove(double xpos, double ypos) {
-    int width = ((Camera*)object->getComponent("camera"))->getWidth();
-    int height = ((Camera*)object->getComponent("camera"))->getHeight();
+    int width = entity->getComponent<Camera>().getWidth();
+    int height = entity->getComponent<Camera>().getHeight();
 
     rotate = vec2(0,float(width/2-xpos));
     rotate += vec2(-float(height/2-ypos),0);
@@ -84,8 +73,8 @@ void FirstPersonController::onCursorMove(double xpos, double ypos) {
 void FirstPersonController::calcTranslation(float dt){
     if (length(move) <= 0){ translationVector = vec3(0); return;}
 
-    vec3 forward = object->transform->getForward();
-    vec3 right = object->transform->getRight();
+    vec3 forward = entity->getComponent<Transform>().getForward();
+    vec3 right = entity->getComponent<Transform>().getRight();
 
     translationVector = (move.x*right) + (move.y*vec3(0,1,0)) + (move.z*forward);
     translationVector = normalize(translationVector) * speed * dt;
@@ -104,21 +93,19 @@ void FirstPersonController::calcRotation(float dt){
 }
 
 
-void FirstPersonController::start(){
-    lateUpdate();
+void FirstPersonController::init(){
+    update();
 }
 
 void FirstPersonController::update(){
     float deltaTime = float(glfwGetTime()-lastTime);
-    Transform* objTf = object->transform;
+    Transform& entTf = entity->getComponent<Transform>();
 
     calcRotation(deltaTime);
-    objTf->setRotation(rotationVector.x,rotationVector.y,0);
+    entTf.setRotation(rotationVector.x,rotationVector.y,0);
 
     calcTranslation(deltaTime);
-    objTf->translate(translationVector.x,translationVector.y,translationVector.z);
-
-	  glm::vec3 p = objTf->calcGlobalPosition();
+    entTf.translate(translationVector.x,translationVector.y,translationVector.z);
 
     lastTime = glfwGetTime();
 }

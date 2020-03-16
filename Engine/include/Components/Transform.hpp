@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ECS.hpp"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/quaternion.hpp>
@@ -8,16 +9,16 @@ namespace Engine {
     class Transform;
 }
 
-#include "GameObject.hpp"
-
 namespace Engine {
 
-class Transform {
+class Transform : public Component {
 private:
-    void calcDirectionVectors();
+    glm::vec3 position = glm::vec3(0, 0, 0);
+    glm::quat rotation = glm::vec3(0, 0, 0);
+    glm::vec3 size = glm::vec3(1, 1, 1);
 public:
 
-    Transform(GameObject* _object);
+    Transform();
     ~Transform();
 
     void translate(float x, float y, float z);
@@ -30,31 +31,16 @@ public:
 
 	void setScale(float x, float y, float z);
 
-    bool hasMoved();
 
     inline glm::vec3 getPosition() const {return position;}
     inline glm::quat getRotation() const {return rotation;}
     inline glm::vec3 getScale() const {return size;}
-    inline glm::vec3 getForward() const {return forward;}
-    inline glm::vec3 getRight() const {return right;}
-    inline glm::vec3 getUp() const {return up;}
 
-    glm::vec3 calcGlobalPosition();
-    glm::quat calcGlobalRotation();
-    glm::vec3 calcGlobalScale();
+    glm::vec3 getForward() const;
+    glm::vec3 getRight() const;
+    glm::vec3 getUp() const;
 
     glm::mat4 calcModelMatrix();
-private:
-    glm::vec3 position;
-    glm::quat rotation;
-    glm::vec3 size;
-    glm::vec3 forward;
-    glm::vec3 right;
-    glm::vec3 up;
-
-    bool moved;
-
-    GameObject* object;
 };
 
 }

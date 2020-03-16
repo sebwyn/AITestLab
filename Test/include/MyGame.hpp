@@ -2,7 +2,6 @@
 
 #include <iostream>
 
-#include "Components/Animator.hpp"
 #include "ShaderProgram.hpp"
 #include "VAO.hpp"
 
@@ -11,7 +10,8 @@ public:
     MyGame(){};
     virtual void start();
     virtual void update();
+    virtual void finish();
 private:
-    Engine::GameObject* sprite;
+    Engine::Entity& sprite = entityManager.addEntity();
 
 };

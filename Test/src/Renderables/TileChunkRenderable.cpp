@@ -21,10 +21,14 @@ TileChunkRenderable::TileChunkRenderable(VAO* _vao)
 TileChunkRenderable::~TileChunkRenderable(){
 }
 
-void TileChunkRenderable::render(glm::mat4 projectionMatrix, glm::mat4 viewMatrix){
+void TileChunkRenderable::setMatrices(glm::mat4 p, glm::mat4 v){
+    projectionMatrix = p;
+    viewMatrix = v;
+}
+
+void TileChunkRenderable::draw(){
     if(isShown){
-        //std::cout << "Rendering: " << object->getName() << std::endl;
-        glm::mat4 newModelMatrix = object->transform->calcModelMatrix();
+        glm::mat4 newModelMatrix = entity->getComponent<Transform>().calcModelMatrix();
         shaderProgram->start();
 
         shaderProgram->setUniformInt(0,"texture1");

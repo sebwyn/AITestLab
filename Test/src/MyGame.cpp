@@ -9,6 +9,7 @@
 #include "Components/FirstPersonController.hpp"
 
 #include "Texture.hpp"
+#include "Components/Transform.hpp"
 
 using namespace Engine;
 
@@ -40,23 +41,33 @@ void MyGame::start(){
 
     Texture* tex = new Texture("Assets/terrain.png");
 
-    sprite = new GameObject("cube1", true);
-    sprite->attachComponent(new TileChunkRenderable(vao));
-    TileChunkRenderable* spriteRender = ((TileChunkRenderable*)sprite->getComponent("renderable"));
-    spriteRender->addTexture(tex);
-    spriteRender->setSheetSize(21,23);
-    spriteRender->setTile(6,6);
-    sprite->transform->setPosition(0,0,0);
+    //sprite = new Entity();
+    sprite.addComponent<TileChunkRenderable>(vao);
+    TileChunkRenderable& spriteRender = sprite.getComponent<TileChunkRenderable>();
+    spriteRender.addTexture(tex);
+    spriteRender.setSheetSize(21,23);
+    spriteRender.setTile(6,6);
+    sprite.addComponent<Transform>();
+    sprite.getComponent<Transform>().setPosition(0,0,0);
 
-    root->addChild(sprite);
     std::cout << "hi" << std::endl;
 
-    camera->attachComponent(new FirstPersonController());
-    camera->transform->setPosition(0,0,1.5);
-    //((Camera*)camera->getComponent("camera"))->lookAt(0,0,0);
+    camera.addComponent<FirstPersonController>();
+    camera.getComponent<Transform>().setPosition(0,0,1.5);
+    //sprite.destroy();
+    //camera.getComponent<Camera>().lookAt(0,0,0);
     //((Camera*)camera->getComponent("camera"))->ortho();
 }
 
 void MyGame::update(){
-    //sprite->transform->translate(0.1,0.1,0);
+    //sprite.transform->translate(0.1,0.1,0);
+    sprite.getComponent<TileChunkRenderable>()
+    .setMatrices(camera.getComponent<Camera>().getProjectionMatrix(), camera.getComponent<Camera>().getViewMatrix());
+}
+
+void MyGame::finish(){
+    sprite.destroy();
+    entityManager.cleanUp();
+    camera.destroy();
+    entityManager.cleanUp();
 }

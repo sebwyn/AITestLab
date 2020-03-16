@@ -4,8 +4,6 @@
 #include "VAO.hpp"
 #include "Texture.hpp"
 
-#include "Component.hpp"
-
 #include "Components/Renderable.hpp"
 
 #include <vector>
@@ -14,22 +12,27 @@
 using namespace Engine;
 
 class TileChunkRenderable : public Renderable {
+private:
+    glm::vec2 tileSize;
+    glm::ivec2 tile;
+    Texture* texture;
+
+    glm::mat4 projectionMatrix ;
+    glm::mat4 viewMatrix;
+
 public:
     TileChunkRenderable();
     TileChunkRenderable(VAO* _vao);
 
     ~TileChunkRenderable();
 
+    void setMatrices(glm::mat4 projectionMatrix, glm::mat4 viewMatrix);
 
-    virtual void render(glm::mat4 projectionMatrix, glm::mat4 viewMatrix);
+    virtual void draw();
 
     void addTexture(Texture* tex);
 
     void setSheetSize(int w, int h);
     void setTile(int x, int y);
 
-private:
-    glm::vec2 tileSize;
-    glm::ivec2 tile;
-    Texture* texture;
 };
