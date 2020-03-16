@@ -1,4 +1,6 @@
-IDIR=../include
+# DIR=/Users/benwyngaard/Documents/Projects/AITestLab/Engine/src/
+
+IDIR=include
 CC=g++
 LINKER=ld
 
@@ -8,9 +10,9 @@ LIBS=-lxml2 -lGLEW -lglfw -framework OpenGL -L/usr/local/opt/libxml2/lib
 CFLAGS=-g -std=c++11 -I $(IDIR) $(INCLUDES)
 LFLAGS=-r -v
 
-ODIR=.obj
+ODIR=src/.obj
 
-EXEC=../lib/Engine.o
+EXEC=lib/Engine.o
 
 DEPDIR=$(ODIR)/.deps
 DEPFLAGS=-MT $@ -MMD -MP -MF $(DEPDIR)/$*.Td

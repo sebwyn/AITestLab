@@ -14,8 +14,8 @@ SimpleRenderable::SimpleRenderable()
 SimpleRenderable::SimpleRenderable(VAO* _vao)
     : Renderable() {
     vao = _vao;
-    shaderProgram = new ShaderProgram("../../Engine/Shaders/Simple/vert.glsl",
-                                      "../../Engine/Shaders/Simple/frag.glsl");
+    shaderProgram = new ShaderProgram("../Engine/Shaders/Simple/vert.glsl",
+                                      "../Engine/Shaders/Simple/frag.glsl");
 }
 
 void SimpleRenderable::render(glm::mat4 projectionMatrix, glm::mat4 viewMatrix){

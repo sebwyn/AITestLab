@@ -38,7 +38,7 @@ void MyGame::start(){
     vao->addFloatBuffer(1,texCoords,6,2);
     vao->addElementBuffer(indices,6);
 
-    Texture* tex = new Texture("../Assets/terrain.png");
+    Texture* tex = new Texture("Assets/terrain.png");
 
     sprite = new GameObject("cube1", true);
     sprite->attachComponent(new TileChunkRenderable(vao));
@@ -49,6 +49,7 @@ void MyGame::start(){
     sprite->transform->setPosition(0,0,0);
 
     root->addChild(sprite);
+    std::cout << "hi" << std::endl;
 
     camera->attachComponent(new FirstPersonController());
     camera->transform->setPosition(0,0,1.5);

@@ -13,8 +13,8 @@ TileChunkRenderable::TileChunkRenderable()
 TileChunkRenderable::TileChunkRenderable(VAO* _vao)
     : Renderable() {
     vao = _vao;
-    shaderProgram = new ShaderProgram("../Shaders/TileChunk/vert.glsl",
-                                      "../Shaders/TileChunk/frag.glsl");
+    shaderProgram = new ShaderProgram("Shaders/TileChunk/vert.glsl",
+                                      "Shaders/TileChunk/frag.glsl");
 
 }
 

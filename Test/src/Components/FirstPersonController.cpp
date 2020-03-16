@@ -100,8 +100,9 @@ void FirstPersonController::calcRotation(float dt){
         rotationVector.x = -1.5;
     }
 
-    rotate = vec2(0,0);
+    rotate =  vec2(0,0);
 }
+
 
 void FirstPersonController::start(){
     lateUpdate();

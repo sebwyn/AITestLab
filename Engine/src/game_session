@@ -2,21 +2,29 @@ let SessionLoad = 1
 if &cp | set nocp | endif
 let s:cpo_save=&cpo
 set cpo&vim
-inoremap <Plug>(emmet-anchorize-summary) =emmet#util#closePopup()=emmet#anchorizeURL(1)
-inoremap <Plug>(emmet-anchorize-url) =emmet#util#closePopup()=emmet#anchorizeURL(0)
-inoremap <Plug>(emmet-remove-tag) =emmet#util#closePopup()=emmet#removeTag()
+inoremap <Plug>(emmet-anchorize-summary) =emmet#util#closePopup()
+=emmet#anchorizeURL(1)
+inoremap <Plug>(emmet-anchorize-url) =emmet#util#closePopup()
+=emmet#anchorizeURL(0)
+inoremap <Plug>(emmet-remove-tag) =emmet#util#closePopup()
+=emmet#removeTag()
 inoremap <Plug>(emmet-split-join-tag) :call emmet#splitJoinTag()
-inoremap <Plug>(emmet-toggle-comment) =emmet#util#closePopup()=emmet#toggleComment()
-inoremap <Plug>(emmet-image-size) =emmet#util#closePopup()=emmet#imageSize()
+inoremap <Plug>(emmet-toggle-comment) =emmet#util#closePopup()
+=emmet#toggleComment()
+inoremap <Plug>(emmet-image-size) =emmet#util#closePopup()
+=emmet#imageSize()
 inoremap <Plug>(emmet-move-prev-item) :call emmet#moveNextPrevItem(1)
 inoremap <Plug>(emmet-move-next-item) :call emmet#moveNextPrevItem(0)
 inoremap <Plug>(emmet-move-prev) :call emmet#moveNextPrev(1)
 inoremap <Plug>(emmet-move-next) :call emmet#moveNextPrev(0)
 inoremap <Plug>(emmet-balance-tag-outword) :call emmet#balanceTag(-1)
 inoremap <Plug>(emmet-balance-tag-inward) :call emmet#balanceTag(1)
-inoremap <Plug>(emmet-update-tag) =emmet#util#closePopup()=emmet#updateTag()
-inoremap <Plug>(emmet-expand-word) =emmet#util#closePopup()=emmet#expandAbbr(1,"")
-inoremap <Plug>(emmet-expand-abbr) =emmet#util#closePopup()=emmet#expandAbbr(0,"")
+inoremap <Plug>(emmet-update-tag) =emmet#util#closePopup()
+=emmet#updateTag()
+inoremap <Plug>(emmet-expand-word) =emmet#util#closePopup()
+=emmet#expandAbbr(1,"")
+inoremap <Plug>(emmet-expand-abbr) =emmet#util#closePopup()
+=emmet#expandAbbr(0,"")
 inoremap <silent> <C-Tab> =UltiSnips#ListSnippets()
 inoremap <silent> <Plug>(fzf-maps-i) :call fzf#vim#maps('i', 0)
 inoremap <expr> <Plug>(fzf-complete-buffer-line) fzf#vim#complete#buffer_line()
@@ -31,7 +39,8 @@ xnoremap  h
 nnoremap  h
 snoremap <silent>  c
 onoremap  h
-xnoremap <silent> 	 :call UltiSnips#SaveLastVisualSelection()gvs
+xnoremap <silent> 	 :call UltiSnips#SaveLastVisualSelection()
+gvs
 snoremap <silent> 	 :call UltiSnips#ExpandSnippetOrJump()
 nnoremap 	 gt
 noremap <NL> j
@@ -88,9 +97,11 @@ nnoremap <silent> ,sh :VimShellCreate
 nnoremap <silent> ,f :Rgrep
 vmap < <gv
 vmap > >gv
-vnoremap J :m '>+1gv=gv
+vnoremap J :m '>+1
+gv=gv
 nnoremap K <Nop>
-vnoremap K :m '<-2gv=gv
+vnoremap K :m '<-2
+gv=gv
 nnoremap N Nzzzv
 nnoremap <silent> T :tabnew
 noremap XX "+x
@@ -149,8 +160,10 @@ nnoremap <silent> <Plug>(fzf-maps-n) :call fzf#vim#maps('n', 0)
 nnoremap <silent> <Plug>GitGutterPreviewHunk :GitGutterPreviewHunk
 nnoremap <silent> <Plug>GitGutterUndoHunk :GitGutterUndoHunk
 nnoremap <silent> <Plug>GitGutterStageHunk :GitGutterStageHunk
-nnoremap <silent> <expr> <Plug>GitGutterPrevHunk &diff ? '[c' : ":\execute v:count1 . 'GitGutterPrevHunk'\"
-nnoremap <silent> <expr> <Plug>GitGutterNextHunk &diff ? ']c' : ":\execute v:count1 . 'GitGutterNextHunk'\"
+nnoremap <silent> <expr> <Plug>GitGutterPrevHunk &diff ? '[c' : ":\execute v:count1 . 'GitGutterPrevHunk'\
+"
+nnoremap <silent> <expr> <Plug>GitGutterNextHunk &diff ? ']c' : ":\execute v:count1 . 'GitGutterNextHunk'\
+"
 xnoremap <silent> <Plug>GitGutterTextObjectOuterVisual :call gitgutter#hunk#text_object(0)
 xnoremap <silent> <Plug>GitGutterTextObjectInnerVisual :call gitgutter#hunk#text_object(1)
 onoremap <silent> <Plug>GitGutterTextObjectOuterPending :call gitgutter#hunk#text_object(0)
@@ -270,8 +283,10 @@ set winminheight=1 winheight=1 winminwidth=1 winwidth=1
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
-imap <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+imap <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> <C-F9> :call C_Run()
 imap <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <S-Tab> <Plug>delimitMateS-Tab
@@ -289,15 +304,30 @@ vnoremap <buffer> <silent> \cl :call C_EndOfLineComment()
 nnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 vnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 noremap <buffer> <silent> \cs :call C_GetLineEndCommCol()
-onoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-nnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-vnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-onoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-nnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-vnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
+onoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+onoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+nnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+vnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
 noremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 noremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 noremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
@@ -306,10 +336,12 @@ noremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description
 noremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
 onoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
 nnoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
-vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')a
+vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')
+a
 onoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
 nnoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
-vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')a
+vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')
+a
 onoremap <buffer> <silent> \cx :call C_CommentToggle( )
 nnoremap <buffer> <silent> \cx :call C_CommentToggle( )
 vnoremap <buffer> <silent> \cx :call C_CommentToggle( )
@@ -374,8 +406,10 @@ vnoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 vnoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif", "v")
 vnoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif", "v")
 vnoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif", "v")
-onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
-nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
+nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 vnoremap <buffer> <silent> \pi0 :call C_PPIf0("v")
 noremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 noremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
@@ -469,8 +503,10 @@ vnoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch", "v")
 onoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 nnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 vnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points", "v")
-map <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-map <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+map <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> \rr :call C_Run()
 map <buffer> <silent> \ra :call C_Arguments()
 map <buffer> <silent> \rm :call C_Make()
@@ -478,7 +514,8 @@ map <buffer> <silent> \rcm :call C_ChooseMakefile()
 map <buffer> <silent> \rmc :call C_MakeClean()
 map <buffer> <silent> \rme :call C_MakeExeToRun()
 map <buffer> <silent> \rma :call C_MakeArguments()
-map <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+map <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 map <buffer> <silent> \rpa :call C_SplintArguments()
 map <buffer> <silent> \rd :call C_Indent()
 omap <buffer> <silent> \rh :call C_Hardcopy()
@@ -494,9 +531,13 @@ xmap <buffer> ac <Plug>GitGutterTextObjectOuterVisual
 omap <buffer> ac <Plug>GitGutterTextObjectOuterPending
 xmap <buffer> ic <Plug>GitGutterTextObjectInnerVisual
 omap <buffer> ic <Plug>GitGutterTextObjectInnerPending
-vnoremap <buffer> { S{}Pk=iB
-map <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-map <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+vnoremap <buffer> {
+ S{
+}Pk=iB
+map <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> <C-F9> :call C_Run()
 map <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <silent> g <Plug>delimitMateJumpMany
@@ -507,18 +548,24 @@ imap <buffer> ' <Plug>delimitMate'
 imap <buffer> ( <Plug>delimitMate(
 imap <buffer> ) <Plug>delimitMate)
 inoremap <buffer> /* /*  */<Left><Left><Left>
-inoremap <buffer> /* /*/kA
+inoremap <buffer> /*
+ /*
+
+/kA
 imap <buffer> [ <Plug>delimitMate[
 inoremap <buffer> <silent> \cl :call C_EndOfLineComment()
-inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()a
+inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
+a
 inoremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 inoremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 inoremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
 inoremap <buffer> <silent> \ccl :call C_InsertTemplate("comment.class")
 inoremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description")
 inoremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
-inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')a
-inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')a
+inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
+a
+inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
+a
 inoremap <buffer> <silent> \cx :call C_CommentToggle( )
 inoremap <buffer> \ccs :CFileSection
 inoremap <buffer> \chs :HFileSection
@@ -551,7 +598,8 @@ inoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 inoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif")
 inoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif")
 inoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif")
-inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 inoremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 inoremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
 inoremap <buffer> <silent> \pl :call C_InsertTemplate("preprocessor.line")
@@ -559,8 +607,10 @@ inoremap <buffer> <silent> \pp :call C_InsertTemplate("preprocessor.pragma")
 inoremap <buffer> <silent> \if :call C_InsertTemplate("idioms.function")
 inoremap <buffer> <silent> \isf :call C_InsertTemplate("idioms.function-static")
 inoremap <buffer> <silent> \im :call C_InsertTemplate("idioms.main")
-inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )i
-inoremap <buffer> <silent> \in :call C_CodeFor("down")i
+inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )
+i
+inoremap <buffer> <silent> \in :call C_CodeFor("down")
+i
 inoremap <buffer> <silent> \ie :call C_InsertTemplate("idioms.enum")
 inoremap <buffer> <silent> \is :call C_InsertTemplate("idioms.struct")
 inoremap <buffer> <silent> \iu :call C_InsertTemplate("idioms.union")
@@ -606,15 +656,18 @@ inoremap <buffer> <silent> \+ec :call C_InsertTemplate("cpp.error-class")
 inoremap <buffer> <silent> \+tr :call C_InsertTemplate("cpp.try-catch")
 inoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch")
 inoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
-imap <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+imap <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> \rr :call C_Run()
 imap <buffer> <silent> \ra :call C_Arguments()
 imap <buffer> <silent> \rm :call C_Make()
 imap <buffer> <silent> \rmc :call C_MakeClean()
 imap <buffer> <silent> \rme :call C_MakeExeToRun()
 imap <buffer> <silent> \rma :call C_MakeArguments()
-imap <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+imap <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 imap <buffer> <silent> \rpa :call C_SplintArguments()
 imap <buffer> <silent> \rd :call C_Indent()
 imap <buffer> <silent> \rh :call C_Hardcopy()
@@ -625,7 +678,9 @@ imap <buffer> <silent> \hp :call C_HelpCsupport()
 imap <buffer> <silent> \hm :call C_Help("m")
 imap <buffer> ] <Plug>delimitMate]
 imap <buffer> ` <Plug>delimitMate`
-inoremap <buffer> { {}O
+inoremap <buffer> {
+ {
+}O
 imap <buffer> { <Plug>delimitMate{
 imap <buffer> } <Plug>delimitMate}
 let &cpo=s:cpo_save
@@ -1641,8 +1696,10 @@ exe 'vert 2resize ' . ((&columns * 89 + 89) / 179)
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
-imap <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+imap <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> <C-F9> :call C_Run()
 imap <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <S-Tab> <Plug>delimitMateS-Tab
@@ -1660,15 +1717,30 @@ vnoremap <buffer> <silent> \cl :call C_EndOfLineComment()
 nnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 vnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 noremap <buffer> <silent> \cs :call C_GetLineEndCommCol()
-onoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-nnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-vnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-onoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-nnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-vnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
+onoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+onoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+nnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+vnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
 noremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 noremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 noremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
@@ -1677,10 +1749,12 @@ noremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description
 noremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
 onoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
 nnoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
-vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')a
+vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')
+a
 onoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
 nnoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
-vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')a
+vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')
+a
 onoremap <buffer> <silent> \cx :call C_CommentToggle( )
 nnoremap <buffer> <silent> \cx :call C_CommentToggle( )
 vnoremap <buffer> <silent> \cx :call C_CommentToggle( )
@@ -1745,8 +1819,10 @@ vnoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 vnoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif", "v")
 vnoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif", "v")
 vnoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif", "v")
-onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
-nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
+nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 vnoremap <buffer> <silent> \pi0 :call C_PPIf0("v")
 noremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 noremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
@@ -1840,8 +1916,10 @@ vnoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch", "v")
 onoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 nnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 vnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points", "v")
-map <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-map <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+map <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> \rr :call C_Run()
 map <buffer> <silent> \ra :call C_Arguments()
 map <buffer> <silent> \rm :call C_Make()
@@ -1849,7 +1927,8 @@ map <buffer> <silent> \rcm :call C_ChooseMakefile()
 map <buffer> <silent> \rmc :call C_MakeClean()
 map <buffer> <silent> \rme :call C_MakeExeToRun()
 map <buffer> <silent> \rma :call C_MakeArguments()
-map <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+map <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 map <buffer> <silent> \rpa :call C_SplintArguments()
 map <buffer> <silent> \rd :call C_Indent()
 omap <buffer> <silent> \rh :call C_Hardcopy()
@@ -1865,9 +1944,13 @@ xmap <buffer> ac <Plug>GitGutterTextObjectOuterVisual
 omap <buffer> ac <Plug>GitGutterTextObjectOuterPending
 xmap <buffer> ic <Plug>GitGutterTextObjectInnerVisual
 omap <buffer> ic <Plug>GitGutterTextObjectInnerPending
-vnoremap <buffer> { S{}Pk=iB
-map <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-map <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+vnoremap <buffer> {
+ S{
+}Pk=iB
+map <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> <C-F9> :call C_Run()
 map <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <silent> g <Plug>delimitMateJumpMany
@@ -1878,18 +1961,24 @@ imap <buffer> ' <Plug>delimitMate'
 imap <buffer> ( <Plug>delimitMate(
 imap <buffer> ) <Plug>delimitMate)
 inoremap <buffer> /* /*  */<Left><Left><Left>
-inoremap <buffer> /* /*/kA
+inoremap <buffer> /*
+ /*
+
+/kA
 imap <buffer> [ <Plug>delimitMate[
 inoremap <buffer> <silent> \cl :call C_EndOfLineComment()
-inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()a
+inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
+a
 inoremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 inoremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 inoremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
 inoremap <buffer> <silent> \ccl :call C_InsertTemplate("comment.class")
 inoremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description")
 inoremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
-inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')a
-inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')a
+inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
+a
+inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
+a
 inoremap <buffer> <silent> \cx :call C_CommentToggle( )
 inoremap <buffer> \ccs :CFileSection
 inoremap <buffer> \chs :HFileSection
@@ -1922,7 +2011,8 @@ inoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 inoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif")
 inoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif")
 inoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif")
-inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 inoremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 inoremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
 inoremap <buffer> <silent> \pl :call C_InsertTemplate("preprocessor.line")
@@ -1930,8 +2020,10 @@ inoremap <buffer> <silent> \pp :call C_InsertTemplate("preprocessor.pragma")
 inoremap <buffer> <silent> \if :call C_InsertTemplate("idioms.function")
 inoremap <buffer> <silent> \isf :call C_InsertTemplate("idioms.function-static")
 inoremap <buffer> <silent> \im :call C_InsertTemplate("idioms.main")
-inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )i
-inoremap <buffer> <silent> \in :call C_CodeFor("down")i
+inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )
+i
+inoremap <buffer> <silent> \in :call C_CodeFor("down")
+i
 inoremap <buffer> <silent> \ie :call C_InsertTemplate("idioms.enum")
 inoremap <buffer> <silent> \is :call C_InsertTemplate("idioms.struct")
 inoremap <buffer> <silent> \iu :call C_InsertTemplate("idioms.union")
@@ -1977,15 +2069,18 @@ inoremap <buffer> <silent> \+ec :call C_InsertTemplate("cpp.error-class")
 inoremap <buffer> <silent> \+tr :call C_InsertTemplate("cpp.try-catch")
 inoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch")
 inoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
-imap <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+imap <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> \rr :call C_Run()
 imap <buffer> <silent> \ra :call C_Arguments()
 imap <buffer> <silent> \rm :call C_Make()
 imap <buffer> <silent> \rmc :call C_MakeClean()
 imap <buffer> <silent> \rme :call C_MakeExeToRun()
 imap <buffer> <silent> \rma :call C_MakeArguments()
-imap <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+imap <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 imap <buffer> <silent> \rpa :call C_SplintArguments()
 imap <buffer> <silent> \rd :call C_Indent()
 imap <buffer> <silent> \rh :call C_Hardcopy()
@@ -1996,7 +2091,9 @@ imap <buffer> <silent> \hp :call C_HelpCsupport()
 imap <buffer> <silent> \hm :call C_Help("m")
 imap <buffer> ] <Plug>delimitMate]
 imap <buffer> ` <Plug>delimitMate`
-inoremap <buffer> { {}O
+inoremap <buffer> {
+ {
+}O
 imap <buffer> { <Plug>delimitMate{
 imap <buffer> } <Plug>delimitMate}
 let &cpo=s:cpo_save
@@ -2117,8 +2214,10 @@ argglobal
 if bufexists('Camera.cpp') | buffer Camera.cpp | else | edit Camera.cpp | endif
 let s:cpo_save=&cpo
 set cpo&vim
-imap <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+imap <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> <C-F9> :call C_Run()
 imap <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <S-Tab> <Plug>delimitMateS-Tab
@@ -2136,15 +2235,30 @@ vnoremap <buffer> <silent> \cl :call C_EndOfLineComment()
 nnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 vnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 noremap <buffer> <silent> \cs :call C_GetLineEndCommCol()
-onoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-nnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-vnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-onoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-nnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-vnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
+onoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+onoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+nnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+vnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
 noremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 noremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 noremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
@@ -2153,10 +2267,12 @@ noremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description
 noremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
 onoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
 nnoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
-vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')a
+vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')
+a
 onoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
 nnoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
-vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')a
+vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')
+a
 onoremap <buffer> <silent> \cx :call C_CommentToggle( )
 nnoremap <buffer> <silent> \cx :call C_CommentToggle( )
 vnoremap <buffer> <silent> \cx :call C_CommentToggle( )
@@ -2221,8 +2337,10 @@ vnoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 vnoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif", "v")
 vnoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif", "v")
 vnoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif", "v")
-onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
-nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
+nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 vnoremap <buffer> <silent> \pi0 :call C_PPIf0("v")
 noremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 noremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
@@ -2316,8 +2434,10 @@ vnoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch", "v")
 onoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 nnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 vnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points", "v")
-map <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-map <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+map <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> \rr :call C_Run()
 map <buffer> <silent> \ra :call C_Arguments()
 map <buffer> <silent> \rm :call C_Make()
@@ -2325,7 +2445,8 @@ map <buffer> <silent> \rcm :call C_ChooseMakefile()
 map <buffer> <silent> \rmc :call C_MakeClean()
 map <buffer> <silent> \rme :call C_MakeExeToRun()
 map <buffer> <silent> \rma :call C_MakeArguments()
-map <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+map <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 map <buffer> <silent> \rpa :call C_SplintArguments()
 map <buffer> <silent> \rd :call C_Indent()
 omap <buffer> <silent> \rh :call C_Hardcopy()
@@ -2341,9 +2462,13 @@ xmap <buffer> ac <Plug>GitGutterTextObjectOuterVisual
 omap <buffer> ac <Plug>GitGutterTextObjectOuterPending
 xmap <buffer> ic <Plug>GitGutterTextObjectInnerVisual
 omap <buffer> ic <Plug>GitGutterTextObjectInnerPending
-vnoremap <buffer> { S{}Pk=iB
-map <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-map <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+vnoremap <buffer> {
+ S{
+}Pk=iB
+map <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> <C-F9> :call C_Run()
 map <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <silent> g <Plug>delimitMateJumpMany
@@ -2354,18 +2479,24 @@ imap <buffer> ' <Plug>delimitMate'
 imap <buffer> ( <Plug>delimitMate(
 imap <buffer> ) <Plug>delimitMate)
 inoremap <buffer> /* /*  */<Left><Left><Left>
-inoremap <buffer> /* /*/kA
+inoremap <buffer> /*
+ /*
+
+/kA
 imap <buffer> [ <Plug>delimitMate[
 inoremap <buffer> <silent> \cl :call C_EndOfLineComment()
-inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()a
+inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
+a
 inoremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 inoremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 inoremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
 inoremap <buffer> <silent> \ccl :call C_InsertTemplate("comment.class")
 inoremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description")
 inoremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
-inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')a
-inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')a
+inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
+a
+inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
+a
 inoremap <buffer> <silent> \cx :call C_CommentToggle( )
 inoremap <buffer> \ccs :CFileSection
 inoremap <buffer> \chs :HFileSection
@@ -2398,7 +2529,8 @@ inoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 inoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif")
 inoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif")
 inoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif")
-inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 inoremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 inoremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
 inoremap <buffer> <silent> \pl :call C_InsertTemplate("preprocessor.line")
@@ -2406,8 +2538,10 @@ inoremap <buffer> <silent> \pp :call C_InsertTemplate("preprocessor.pragma")
 inoremap <buffer> <silent> \if :call C_InsertTemplate("idioms.function")
 inoremap <buffer> <silent> \isf :call C_InsertTemplate("idioms.function-static")
 inoremap <buffer> <silent> \im :call C_InsertTemplate("idioms.main")
-inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )i
-inoremap <buffer> <silent> \in :call C_CodeFor("down")i
+inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )
+i
+inoremap <buffer> <silent> \in :call C_CodeFor("down")
+i
 inoremap <buffer> <silent> \ie :call C_InsertTemplate("idioms.enum")
 inoremap <buffer> <silent> \is :call C_InsertTemplate("idioms.struct")
 inoremap <buffer> <silent> \iu :call C_InsertTemplate("idioms.union")
@@ -2453,15 +2587,18 @@ inoremap <buffer> <silent> \+ec :call C_InsertTemplate("cpp.error-class")
 inoremap <buffer> <silent> \+tr :call C_InsertTemplate("cpp.try-catch")
 inoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch")
 inoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
-imap <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+imap <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> \rr :call C_Run()
 imap <buffer> <silent> \ra :call C_Arguments()
 imap <buffer> <silent> \rm :call C_Make()
 imap <buffer> <silent> \rmc :call C_MakeClean()
 imap <buffer> <silent> \rme :call C_MakeExeToRun()
 imap <buffer> <silent> \rma :call C_MakeArguments()
-imap <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+imap <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 imap <buffer> <silent> \rpa :call C_SplintArguments()
 imap <buffer> <silent> \rd :call C_Indent()
 imap <buffer> <silent> \rh :call C_Hardcopy()
@@ -2472,7 +2609,9 @@ imap <buffer> <silent> \hp :call C_HelpCsupport()
 imap <buffer> <silent> \hm :call C_Help("m")
 imap <buffer> ] <Plug>delimitMate]
 imap <buffer> ` <Plug>delimitMate`
-inoremap <buffer> { {}O
+inoremap <buffer> {
+ {
+}O
 imap <buffer> { <Plug>delimitMate{
 imap <buffer> } <Plug>delimitMate}
 let &cpo=s:cpo_save
@@ -2902,8 +3041,10 @@ exe 'vert 2resize ' . ((&columns * 89 + 89) / 179)
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
-imap <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+imap <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> <C-F9> :call C_Run()
 imap <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <S-Tab> <Plug>delimitMateS-Tab
@@ -2921,15 +3062,30 @@ vnoremap <buffer> <silent> \cl :call C_EndOfLineComment()
 nnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 vnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 noremap <buffer> <silent> \cs :call C_GetLineEndCommCol()
-onoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-nnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-vnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-onoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-nnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-vnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
+onoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+onoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+nnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+vnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
 noremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 noremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 noremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
@@ -2938,10 +3094,12 @@ noremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description
 noremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
 onoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
 nnoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
-vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')a
+vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')
+a
 onoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
 nnoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
-vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')a
+vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')
+a
 onoremap <buffer> <silent> \cx :call C_CommentToggle( )
 nnoremap <buffer> <silent> \cx :call C_CommentToggle( )
 vnoremap <buffer> <silent> \cx :call C_CommentToggle( )
@@ -3006,8 +3164,10 @@ vnoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 vnoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif", "v")
 vnoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif", "v")
 vnoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif", "v")
-onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
-nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
+nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 vnoremap <buffer> <silent> \pi0 :call C_PPIf0("v")
 noremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 noremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
@@ -3101,8 +3261,10 @@ vnoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch", "v")
 onoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 nnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 vnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points", "v")
-map <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-map <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+map <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> \rr :call C_Run()
 map <buffer> <silent> \ra :call C_Arguments()
 map <buffer> <silent> \rm :call C_Make()
@@ -3110,7 +3272,8 @@ map <buffer> <silent> \rcm :call C_ChooseMakefile()
 map <buffer> <silent> \rmc :call C_MakeClean()
 map <buffer> <silent> \rme :call C_MakeExeToRun()
 map <buffer> <silent> \rma :call C_MakeArguments()
-map <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+map <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 map <buffer> <silent> \rpa :call C_SplintArguments()
 map <buffer> <silent> \rd :call C_Indent()
 omap <buffer> <silent> \rh :call C_Hardcopy()
@@ -3126,9 +3289,13 @@ xmap <buffer> ac <Plug>GitGutterTextObjectOuterVisual
 omap <buffer> ac <Plug>GitGutterTextObjectOuterPending
 xmap <buffer> ic <Plug>GitGutterTextObjectInnerVisual
 omap <buffer> ic <Plug>GitGutterTextObjectInnerPending
-vnoremap <buffer> { S{}Pk=iB
-map <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-map <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+vnoremap <buffer> {
+ S{
+}Pk=iB
+map <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> <C-F9> :call C_Run()
 map <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <silent> g <Plug>delimitMateJumpMany
@@ -3139,18 +3306,24 @@ imap <buffer> ' <Plug>delimitMate'
 imap <buffer> ( <Plug>delimitMate(
 imap <buffer> ) <Plug>delimitMate)
 inoremap <buffer> /* /*  */<Left><Left><Left>
-inoremap <buffer> /* /*/kA
+inoremap <buffer> /*
+ /*
+
+/kA
 imap <buffer> [ <Plug>delimitMate[
 inoremap <buffer> <silent> \cl :call C_EndOfLineComment()
-inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()a
+inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
+a
 inoremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 inoremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 inoremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
 inoremap <buffer> <silent> \ccl :call C_InsertTemplate("comment.class")
 inoremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description")
 inoremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
-inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')a
-inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')a
+inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
+a
+inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
+a
 inoremap <buffer> <silent> \cx :call C_CommentToggle( )
 inoremap <buffer> \ccs :CFileSection
 inoremap <buffer> \chs :HFileSection
@@ -3183,7 +3356,8 @@ inoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 inoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif")
 inoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif")
 inoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif")
-inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 inoremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 inoremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
 inoremap <buffer> <silent> \pl :call C_InsertTemplate("preprocessor.line")
@@ -3191,8 +3365,10 @@ inoremap <buffer> <silent> \pp :call C_InsertTemplate("preprocessor.pragma")
 inoremap <buffer> <silent> \if :call C_InsertTemplate("idioms.function")
 inoremap <buffer> <silent> \isf :call C_InsertTemplate("idioms.function-static")
 inoremap <buffer> <silent> \im :call C_InsertTemplate("idioms.main")
-inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )i
-inoremap <buffer> <silent> \in :call C_CodeFor("down")i
+inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )
+i
+inoremap <buffer> <silent> \in :call C_CodeFor("down")
+i
 inoremap <buffer> <silent> \ie :call C_InsertTemplate("idioms.enum")
 inoremap <buffer> <silent> \is :call C_InsertTemplate("idioms.struct")
 inoremap <buffer> <silent> \iu :call C_InsertTemplate("idioms.union")
@@ -3238,15 +3414,18 @@ inoremap <buffer> <silent> \+ec :call C_InsertTemplate("cpp.error-class")
 inoremap <buffer> <silent> \+tr :call C_InsertTemplate("cpp.try-catch")
 inoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch")
 inoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
-imap <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+imap <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> \rr :call C_Run()
 imap <buffer> <silent> \ra :call C_Arguments()
 imap <buffer> <silent> \rm :call C_Make()
 imap <buffer> <silent> \rmc :call C_MakeClean()
 imap <buffer> <silent> \rme :call C_MakeExeToRun()
 imap <buffer> <silent> \rma :call C_MakeArguments()
-imap <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+imap <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 imap <buffer> <silent> \rpa :call C_SplintArguments()
 imap <buffer> <silent> \rd :call C_Indent()
 imap <buffer> <silent> \rh :call C_Hardcopy()
@@ -3257,7 +3436,9 @@ imap <buffer> <silent> \hp :call C_HelpCsupport()
 imap <buffer> <silent> \hm :call C_Help("m")
 imap <buffer> ] <Plug>delimitMate]
 imap <buffer> ` <Plug>delimitMate`
-inoremap <buffer> { {}O
+inoremap <buffer> {
+ {
+}O
 imap <buffer> { <Plug>delimitMate{
 imap <buffer> } <Plug>delimitMate}
 let &cpo=s:cpo_save
@@ -3378,8 +3559,10 @@ argglobal
 if bufexists('Renderable.cpp') | buffer Renderable.cpp | else | edit Renderable.cpp | endif
 let s:cpo_save=&cpo
 set cpo&vim
-imap <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+imap <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> <C-F9> :call C_Run()
 imap <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <S-Tab> <Plug>delimitMateS-Tab
@@ -3397,15 +3580,30 @@ vnoremap <buffer> <silent> \cl :call C_EndOfLineComment()
 nnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 vnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 noremap <buffer> <silent> \cs :call C_GetLineEndCommCol()
-onoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-nnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-vnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-onoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-nnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-vnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
+onoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+onoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+nnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+vnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
 noremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 noremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 noremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
@@ -3414,10 +3612,12 @@ noremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description
 noremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
 onoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
 nnoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
-vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')a
+vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')
+a
 onoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
 nnoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
-vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')a
+vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')
+a
 onoremap <buffer> <silent> \cx :call C_CommentToggle( )
 nnoremap <buffer> <silent> \cx :call C_CommentToggle( )
 vnoremap <buffer> <silent> \cx :call C_CommentToggle( )
@@ -3482,8 +3682,10 @@ vnoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 vnoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif", "v")
 vnoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif", "v")
 vnoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif", "v")
-onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
-nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
+nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 vnoremap <buffer> <silent> \pi0 :call C_PPIf0("v")
 noremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 noremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
@@ -3577,8 +3779,10 @@ vnoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch", "v")
 onoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 nnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 vnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points", "v")
-map <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-map <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+map <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> \rr :call C_Run()
 map <buffer> <silent> \ra :call C_Arguments()
 map <buffer> <silent> \rm :call C_Make()
@@ -3586,7 +3790,8 @@ map <buffer> <silent> \rcm :call C_ChooseMakefile()
 map <buffer> <silent> \rmc :call C_MakeClean()
 map <buffer> <silent> \rme :call C_MakeExeToRun()
 map <buffer> <silent> \rma :call C_MakeArguments()
-map <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+map <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 map <buffer> <silent> \rpa :call C_SplintArguments()
 map <buffer> <silent> \rd :call C_Indent()
 omap <buffer> <silent> \rh :call C_Hardcopy()
@@ -3602,9 +3807,13 @@ xmap <buffer> ac <Plug>GitGutterTextObjectOuterVisual
 omap <buffer> ac <Plug>GitGutterTextObjectOuterPending
 xmap <buffer> ic <Plug>GitGutterTextObjectInnerVisual
 omap <buffer> ic <Plug>GitGutterTextObjectInnerPending
-vnoremap <buffer> { S{}Pk=iB
-map <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-map <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+vnoremap <buffer> {
+ S{
+}Pk=iB
+map <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> <C-F9> :call C_Run()
 map <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <silent> g <Plug>delimitMateJumpMany
@@ -3615,18 +3824,24 @@ imap <buffer> ' <Plug>delimitMate'
 imap <buffer> ( <Plug>delimitMate(
 imap <buffer> ) <Plug>delimitMate)
 inoremap <buffer> /* /*  */<Left><Left><Left>
-inoremap <buffer> /* /*/kA
+inoremap <buffer> /*
+ /*
+
+/kA
 imap <buffer> [ <Plug>delimitMate[
 inoremap <buffer> <silent> \cl :call C_EndOfLineComment()
-inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()a
+inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
+a
 inoremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 inoremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 inoremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
 inoremap <buffer> <silent> \ccl :call C_InsertTemplate("comment.class")
 inoremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description")
 inoremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
-inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')a
-inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')a
+inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
+a
+inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
+a
 inoremap <buffer> <silent> \cx :call C_CommentToggle( )
 inoremap <buffer> \ccs :CFileSection
 inoremap <buffer> \chs :HFileSection
@@ -3659,7 +3874,8 @@ inoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 inoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif")
 inoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif")
 inoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif")
-inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 inoremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 inoremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
 inoremap <buffer> <silent> \pl :call C_InsertTemplate("preprocessor.line")
@@ -3667,8 +3883,10 @@ inoremap <buffer> <silent> \pp :call C_InsertTemplate("preprocessor.pragma")
 inoremap <buffer> <silent> \if :call C_InsertTemplate("idioms.function")
 inoremap <buffer> <silent> \isf :call C_InsertTemplate("idioms.function-static")
 inoremap <buffer> <silent> \im :call C_InsertTemplate("idioms.main")
-inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )i
-inoremap <buffer> <silent> \in :call C_CodeFor("down")i
+inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )
+i
+inoremap <buffer> <silent> \in :call C_CodeFor("down")
+i
 inoremap <buffer> <silent> \ie :call C_InsertTemplate("idioms.enum")
 inoremap <buffer> <silent> \is :call C_InsertTemplate("idioms.struct")
 inoremap <buffer> <silent> \iu :call C_InsertTemplate("idioms.union")
@@ -3714,15 +3932,18 @@ inoremap <buffer> <silent> \+ec :call C_InsertTemplate("cpp.error-class")
 inoremap <buffer> <silent> \+tr :call C_InsertTemplate("cpp.try-catch")
 inoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch")
 inoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
-imap <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+imap <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> \rr :call C_Run()
 imap <buffer> <silent> \ra :call C_Arguments()
 imap <buffer> <silent> \rm :call C_Make()
 imap <buffer> <silent> \rmc :call C_MakeClean()
 imap <buffer> <silent> \rme :call C_MakeExeToRun()
 imap <buffer> <silent> \rma :call C_MakeArguments()
-imap <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+imap <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 imap <buffer> <silent> \rpa :call C_SplintArguments()
 imap <buffer> <silent> \rd :call C_Indent()
 imap <buffer> <silent> \rh :call C_Hardcopy()
@@ -3733,7 +3954,9 @@ imap <buffer> <silent> \hp :call C_HelpCsupport()
 imap <buffer> <silent> \hm :call C_Help("m")
 imap <buffer> ] <Plug>delimitMate]
 imap <buffer> ` <Plug>delimitMate`
-inoremap <buffer> { {}O
+inoremap <buffer> {
+ {
+}O
 imap <buffer> { <Plug>delimitMate{
 imap <buffer> } <Plug>delimitMate}
 let &cpo=s:cpo_save
@@ -3867,8 +4090,10 @@ exe 'vert 2resize ' . ((&columns * 89 + 89) / 179)
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
-imap <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+imap <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> <C-F9> :call C_Run()
 imap <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <S-Tab> <Plug>delimitMateS-Tab
@@ -3886,15 +4111,30 @@ vnoremap <buffer> <silent> \cl :call C_EndOfLineComment()
 nnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 vnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 noremap <buffer> <silent> \cs :call C_GetLineEndCommCol()
-onoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-nnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-vnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-onoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-nnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-vnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
+onoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+onoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+nnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+vnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
 noremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 noremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 noremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
@@ -3903,10 +4143,12 @@ noremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description
 noremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
 onoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
 nnoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
-vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')a
+vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')
+a
 onoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
 nnoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
-vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')a
+vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')
+a
 onoremap <buffer> <silent> \cx :call C_CommentToggle( )
 nnoremap <buffer> <silent> \cx :call C_CommentToggle( )
 vnoremap <buffer> <silent> \cx :call C_CommentToggle( )
@@ -3971,8 +4213,10 @@ vnoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 vnoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif", "v")
 vnoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif", "v")
 vnoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif", "v")
-onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
-nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
+nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 vnoremap <buffer> <silent> \pi0 :call C_PPIf0("v")
 noremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 noremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
@@ -4066,8 +4310,10 @@ vnoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch", "v")
 onoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 nnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 vnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points", "v")
-map <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-map <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+map <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> \rr :call C_Run()
 map <buffer> <silent> \ra :call C_Arguments()
 map <buffer> <silent> \rm :call C_Make()
@@ -4075,7 +4321,8 @@ map <buffer> <silent> \rcm :call C_ChooseMakefile()
 map <buffer> <silent> \rmc :call C_MakeClean()
 map <buffer> <silent> \rme :call C_MakeExeToRun()
 map <buffer> <silent> \rma :call C_MakeArguments()
-map <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+map <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 map <buffer> <silent> \rpa :call C_SplintArguments()
 map <buffer> <silent> \rd :call C_Indent()
 omap <buffer> <silent> \rh :call C_Hardcopy()
@@ -4091,9 +4338,13 @@ xmap <buffer> ac <Plug>GitGutterTextObjectOuterVisual
 omap <buffer> ac <Plug>GitGutterTextObjectOuterPending
 xmap <buffer> ic <Plug>GitGutterTextObjectInnerVisual
 omap <buffer> ic <Plug>GitGutterTextObjectInnerPending
-vnoremap <buffer> { S{}Pk=iB
-map <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-map <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+vnoremap <buffer> {
+ S{
+}Pk=iB
+map <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> <C-F9> :call C_Run()
 map <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <silent> g <Plug>delimitMateJumpMany
@@ -4104,18 +4355,24 @@ imap <buffer> ' <Plug>delimitMate'
 imap <buffer> ( <Plug>delimitMate(
 imap <buffer> ) <Plug>delimitMate)
 inoremap <buffer> /* /*  */<Left><Left><Left>
-inoremap <buffer> /* /*/kA
+inoremap <buffer> /*
+ /*
+
+/kA
 imap <buffer> [ <Plug>delimitMate[
 inoremap <buffer> <silent> \cl :call C_EndOfLineComment()
-inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()a
+inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
+a
 inoremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 inoremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 inoremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
 inoremap <buffer> <silent> \ccl :call C_InsertTemplate("comment.class")
 inoremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description")
 inoremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
-inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')a
-inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')a
+inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
+a
+inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
+a
 inoremap <buffer> <silent> \cx :call C_CommentToggle( )
 inoremap <buffer> \ccs :CFileSection
 inoremap <buffer> \chs :HFileSection
@@ -4148,7 +4405,8 @@ inoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 inoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif")
 inoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif")
 inoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif")
-inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 inoremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 inoremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
 inoremap <buffer> <silent> \pl :call C_InsertTemplate("preprocessor.line")
@@ -4156,8 +4414,10 @@ inoremap <buffer> <silent> \pp :call C_InsertTemplate("preprocessor.pragma")
 inoremap <buffer> <silent> \if :call C_InsertTemplate("idioms.function")
 inoremap <buffer> <silent> \isf :call C_InsertTemplate("idioms.function-static")
 inoremap <buffer> <silent> \im :call C_InsertTemplate("idioms.main")
-inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )i
-inoremap <buffer> <silent> \in :call C_CodeFor("down")i
+inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )
+i
+inoremap <buffer> <silent> \in :call C_CodeFor("down")
+i
 inoremap <buffer> <silent> \ie :call C_InsertTemplate("idioms.enum")
 inoremap <buffer> <silent> \is :call C_InsertTemplate("idioms.struct")
 inoremap <buffer> <silent> \iu :call C_InsertTemplate("idioms.union")
@@ -4203,15 +4463,18 @@ inoremap <buffer> <silent> \+ec :call C_InsertTemplate("cpp.error-class")
 inoremap <buffer> <silent> \+tr :call C_InsertTemplate("cpp.try-catch")
 inoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch")
 inoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
-imap <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+imap <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> \rr :call C_Run()
 imap <buffer> <silent> \ra :call C_Arguments()
 imap <buffer> <silent> \rm :call C_Make()
 imap <buffer> <silent> \rmc :call C_MakeClean()
 imap <buffer> <silent> \rme :call C_MakeExeToRun()
 imap <buffer> <silent> \rma :call C_MakeArguments()
-imap <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+imap <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 imap <buffer> <silent> \rpa :call C_SplintArguments()
 imap <buffer> <silent> \rd :call C_Indent()
 imap <buffer> <silent> \rh :call C_Hardcopy()
@@ -4222,7 +4485,9 @@ imap <buffer> <silent> \hp :call C_HelpCsupport()
 imap <buffer> <silent> \hm :call C_Help("m")
 imap <buffer> ] <Plug>delimitMate]
 imap <buffer> ` <Plug>delimitMate`
-inoremap <buffer> { {}O
+inoremap <buffer> {
+ {
+}O
 imap <buffer> { <Plug>delimitMate{
 imap <buffer> } <Plug>delimitMate}
 let &cpo=s:cpo_save
@@ -4343,8 +4608,10 @@ argglobal
 if bufexists('ShaderProgram.cpp') | buffer ShaderProgram.cpp | else | edit ShaderProgram.cpp | endif
 let s:cpo_save=&cpo
 set cpo&vim
-imap <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+imap <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> <C-F9> :call C_Run()
 imap <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <S-Tab> <Plug>delimitMateS-Tab
@@ -4362,15 +4629,30 @@ vnoremap <buffer> <silent> \cl :call C_EndOfLineComment()
 nnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 vnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 noremap <buffer> <silent> \cs :call C_GetLineEndCommCol()
-onoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-nnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-vnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-onoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-nnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-vnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
+onoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+onoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+nnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+vnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
 noremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 noremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 noremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
@@ -4379,10 +4661,12 @@ noremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description
 noremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
 onoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
 nnoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
-vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')a
+vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')
+a
 onoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
 nnoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
-vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')a
+vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')
+a
 onoremap <buffer> <silent> \cx :call C_CommentToggle( )
 nnoremap <buffer> <silent> \cx :call C_CommentToggle( )
 vnoremap <buffer> <silent> \cx :call C_CommentToggle( )
@@ -4447,8 +4731,10 @@ vnoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 vnoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif", "v")
 vnoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif", "v")
 vnoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif", "v")
-onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
-nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
+nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 vnoremap <buffer> <silent> \pi0 :call C_PPIf0("v")
 noremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 noremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
@@ -4542,8 +4828,10 @@ vnoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch", "v")
 onoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 nnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 vnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points", "v")
-map <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-map <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+map <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> \rr :call C_Run()
 map <buffer> <silent> \ra :call C_Arguments()
 map <buffer> <silent> \rm :call C_Make()
@@ -4551,7 +4839,8 @@ map <buffer> <silent> \rcm :call C_ChooseMakefile()
 map <buffer> <silent> \rmc :call C_MakeClean()
 map <buffer> <silent> \rme :call C_MakeExeToRun()
 map <buffer> <silent> \rma :call C_MakeArguments()
-map <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+map <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 map <buffer> <silent> \rpa :call C_SplintArguments()
 map <buffer> <silent> \rd :call C_Indent()
 omap <buffer> <silent> \rh :call C_Hardcopy()
@@ -4567,9 +4856,13 @@ xmap <buffer> ac <Plug>GitGutterTextObjectOuterVisual
 omap <buffer> ac <Plug>GitGutterTextObjectOuterPending
 xmap <buffer> ic <Plug>GitGutterTextObjectInnerVisual
 omap <buffer> ic <Plug>GitGutterTextObjectInnerPending
-vnoremap <buffer> { S{}Pk=iB
-map <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-map <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+vnoremap <buffer> {
+ S{
+}Pk=iB
+map <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> <C-F9> :call C_Run()
 map <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <silent> g <Plug>delimitMateJumpMany
@@ -4580,18 +4873,24 @@ imap <buffer> ' <Plug>delimitMate'
 imap <buffer> ( <Plug>delimitMate(
 imap <buffer> ) <Plug>delimitMate)
 inoremap <buffer> /* /*  */<Left><Left><Left>
-inoremap <buffer> /* /*/kA
+inoremap <buffer> /*
+ /*
+
+/kA
 imap <buffer> [ <Plug>delimitMate[
 inoremap <buffer> <silent> \cl :call C_EndOfLineComment()
-inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()a
+inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
+a
 inoremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 inoremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 inoremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
 inoremap <buffer> <silent> \ccl :call C_InsertTemplate("comment.class")
 inoremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description")
 inoremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
-inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')a
-inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')a
+inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
+a
+inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
+a
 inoremap <buffer> <silent> \cx :call C_CommentToggle( )
 inoremap <buffer> \ccs :CFileSection
 inoremap <buffer> \chs :HFileSection
@@ -4624,7 +4923,8 @@ inoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 inoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif")
 inoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif")
 inoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif")
-inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 inoremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 inoremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
 inoremap <buffer> <silent> \pl :call C_InsertTemplate("preprocessor.line")
@@ -4632,8 +4932,10 @@ inoremap <buffer> <silent> \pp :call C_InsertTemplate("preprocessor.pragma")
 inoremap <buffer> <silent> \if :call C_InsertTemplate("idioms.function")
 inoremap <buffer> <silent> \isf :call C_InsertTemplate("idioms.function-static")
 inoremap <buffer> <silent> \im :call C_InsertTemplate("idioms.main")
-inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )i
-inoremap <buffer> <silent> \in :call C_CodeFor("down")i
+inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )
+i
+inoremap <buffer> <silent> \in :call C_CodeFor("down")
+i
 inoremap <buffer> <silent> \ie :call C_InsertTemplate("idioms.enum")
 inoremap <buffer> <silent> \is :call C_InsertTemplate("idioms.struct")
 inoremap <buffer> <silent> \iu :call C_InsertTemplate("idioms.union")
@@ -4679,15 +4981,18 @@ inoremap <buffer> <silent> \+ec :call C_InsertTemplate("cpp.error-class")
 inoremap <buffer> <silent> \+tr :call C_InsertTemplate("cpp.try-catch")
 inoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch")
 inoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
-imap <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+imap <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> \rr :call C_Run()
 imap <buffer> <silent> \ra :call C_Arguments()
 imap <buffer> <silent> \rm :call C_Make()
 imap <buffer> <silent> \rmc :call C_MakeClean()
 imap <buffer> <silent> \rme :call C_MakeExeToRun()
 imap <buffer> <silent> \rma :call C_MakeArguments()
-imap <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+imap <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 imap <buffer> <silent> \rpa :call C_SplintArguments()
 imap <buffer> <silent> \rd :call C_Indent()
 imap <buffer> <silent> \rh :call C_Hardcopy()
@@ -4698,7 +5003,9 @@ imap <buffer> <silent> \hp :call C_HelpCsupport()
 imap <buffer> <silent> \hm :call C_Help("m")
 imap <buffer> ] <Plug>delimitMate]
 imap <buffer> ` <Plug>delimitMate`
-inoremap <buffer> { {}O
+inoremap <buffer> {
+ {
+}O
 imap <buffer> { <Plug>delimitMate{
 imap <buffer> } <Plug>delimitMate}
 let &cpo=s:cpo_save
@@ -4832,8 +5139,10 @@ exe 'vert 2resize ' . ((&columns * 89 + 89) / 179)
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
-imap <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+imap <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> <C-F9> :call C_Run()
 imap <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <S-Tab> <Plug>delimitMateS-Tab
@@ -4851,15 +5160,30 @@ vnoremap <buffer> <silent> \cl :call C_EndOfLineComment()
 nnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 vnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 noremap <buffer> <silent> \cs :call C_GetLineEndCommCol()
-onoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-nnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-vnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-onoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-nnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-vnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
+onoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+onoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+nnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+vnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
 noremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 noremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 noremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
@@ -4868,10 +5192,12 @@ noremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description
 noremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
 onoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
 nnoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
-vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')a
+vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')
+a
 onoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
 nnoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
-vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')a
+vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')
+a
 onoremap <buffer> <silent> \cx :call C_CommentToggle( )
 nnoremap <buffer> <silent> \cx :call C_CommentToggle( )
 vnoremap <buffer> <silent> \cx :call C_CommentToggle( )
@@ -4936,8 +5262,10 @@ vnoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 vnoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif", "v")
 vnoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif", "v")
 vnoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif", "v")
-onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
-nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
+nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 vnoremap <buffer> <silent> \pi0 :call C_PPIf0("v")
 noremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 noremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
@@ -5031,8 +5359,10 @@ vnoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch", "v")
 onoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 nnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 vnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points", "v")
-map <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-map <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+map <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> \rr :call C_Run()
 map <buffer> <silent> \ra :call C_Arguments()
 map <buffer> <silent> \rm :call C_Make()
@@ -5040,7 +5370,8 @@ map <buffer> <silent> \rcm :call C_ChooseMakefile()
 map <buffer> <silent> \rmc :call C_MakeClean()
 map <buffer> <silent> \rme :call C_MakeExeToRun()
 map <buffer> <silent> \rma :call C_MakeArguments()
-map <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+map <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 map <buffer> <silent> \rpa :call C_SplintArguments()
 map <buffer> <silent> \rd :call C_Indent()
 omap <buffer> <silent> \rh :call C_Hardcopy()
@@ -5056,9 +5387,13 @@ xmap <buffer> ac <Plug>GitGutterTextObjectOuterVisual
 omap <buffer> ac <Plug>GitGutterTextObjectOuterPending
 xmap <buffer> ic <Plug>GitGutterTextObjectInnerVisual
 omap <buffer> ic <Plug>GitGutterTextObjectInnerPending
-vnoremap <buffer> { S{}Pk=iB
-map <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-map <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+vnoremap <buffer> {
+ S{
+}Pk=iB
+map <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> <C-F9> :call C_Run()
 map <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <silent> g <Plug>delimitMateJumpMany
@@ -5069,18 +5404,24 @@ imap <buffer> ' <Plug>delimitMate'
 imap <buffer> ( <Plug>delimitMate(
 imap <buffer> ) <Plug>delimitMate)
 inoremap <buffer> /* /*  */<Left><Left><Left>
-inoremap <buffer> /* /*/kA
+inoremap <buffer> /*
+ /*
+
+/kA
 imap <buffer> [ <Plug>delimitMate[
 inoremap <buffer> <silent> \cl :call C_EndOfLineComment()
-inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()a
+inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
+a
 inoremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 inoremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 inoremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
 inoremap <buffer> <silent> \ccl :call C_InsertTemplate("comment.class")
 inoremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description")
 inoremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
-inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')a
-inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')a
+inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
+a
+inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
+a
 inoremap <buffer> <silent> \cx :call C_CommentToggle( )
 inoremap <buffer> \ccs :CFileSection
 inoremap <buffer> \chs :HFileSection
@@ -5113,7 +5454,8 @@ inoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 inoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif")
 inoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif")
 inoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif")
-inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 inoremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 inoremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
 inoremap <buffer> <silent> \pl :call C_InsertTemplate("preprocessor.line")
@@ -5121,8 +5463,10 @@ inoremap <buffer> <silent> \pp :call C_InsertTemplate("preprocessor.pragma")
 inoremap <buffer> <silent> \if :call C_InsertTemplate("idioms.function")
 inoremap <buffer> <silent> \isf :call C_InsertTemplate("idioms.function-static")
 inoremap <buffer> <silent> \im :call C_InsertTemplate("idioms.main")
-inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )i
-inoremap <buffer> <silent> \in :call C_CodeFor("down")i
+inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )
+i
+inoremap <buffer> <silent> \in :call C_CodeFor("down")
+i
 inoremap <buffer> <silent> \ie :call C_InsertTemplate("idioms.enum")
 inoremap <buffer> <silent> \is :call C_InsertTemplate("idioms.struct")
 inoremap <buffer> <silent> \iu :call C_InsertTemplate("idioms.union")
@@ -5168,15 +5512,18 @@ inoremap <buffer> <silent> \+ec :call C_InsertTemplate("cpp.error-class")
 inoremap <buffer> <silent> \+tr :call C_InsertTemplate("cpp.try-catch")
 inoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch")
 inoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
-imap <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+imap <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> \rr :call C_Run()
 imap <buffer> <silent> \ra :call C_Arguments()
 imap <buffer> <silent> \rm :call C_Make()
 imap <buffer> <silent> \rmc :call C_MakeClean()
 imap <buffer> <silent> \rme :call C_MakeExeToRun()
 imap <buffer> <silent> \rma :call C_MakeArguments()
-imap <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+imap <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 imap <buffer> <silent> \rpa :call C_SplintArguments()
 imap <buffer> <silent> \rd :call C_Indent()
 imap <buffer> <silent> \rh :call C_Hardcopy()
@@ -5187,7 +5534,9 @@ imap <buffer> <silent> \hp :call C_HelpCsupport()
 imap <buffer> <silent> \hm :call C_Help("m")
 imap <buffer> ] <Plug>delimitMate]
 imap <buffer> ` <Plug>delimitMate`
-inoremap <buffer> { {}O
+inoremap <buffer> {
+ {
+}O
 imap <buffer> { <Plug>delimitMate{
 imap <buffer> } <Plug>delimitMate}
 let &cpo=s:cpo_save
@@ -5308,8 +5657,10 @@ argglobal
 if bufexists('VAO.cpp') | buffer VAO.cpp | else | edit VAO.cpp | endif
 let s:cpo_save=&cpo
 set cpo&vim
-imap <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+imap <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> <C-F9> :call C_Run()
 imap <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <S-Tab> <Plug>delimitMateS-Tab
@@ -5327,15 +5678,30 @@ vnoremap <buffer> <silent> \cl :call C_EndOfLineComment()
 nnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 vnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 noremap <buffer> <silent> \cs :call C_GetLineEndCommCol()
-onoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-nnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-vnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-onoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-nnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-vnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
+onoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+onoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+nnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+vnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
 noremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 noremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 noremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
@@ -5344,10 +5710,12 @@ noremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description
 noremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
 onoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
 nnoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
-vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')a
+vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')
+a
 onoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
 nnoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
-vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')a
+vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')
+a
 onoremap <buffer> <silent> \cx :call C_CommentToggle( )
 nnoremap <buffer> <silent> \cx :call C_CommentToggle( )
 vnoremap <buffer> <silent> \cx :call C_CommentToggle( )
@@ -5412,8 +5780,10 @@ vnoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 vnoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif", "v")
 vnoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif", "v")
 vnoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif", "v")
-onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
-nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
+nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 vnoremap <buffer> <silent> \pi0 :call C_PPIf0("v")
 noremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 noremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
@@ -5507,8 +5877,10 @@ vnoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch", "v")
 onoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 nnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 vnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points", "v")
-map <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-map <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+map <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> \rr :call C_Run()
 map <buffer> <silent> \ra :call C_Arguments()
 map <buffer> <silent> \rm :call C_Make()
@@ -5516,7 +5888,8 @@ map <buffer> <silent> \rcm :call C_ChooseMakefile()
 map <buffer> <silent> \rmc :call C_MakeClean()
 map <buffer> <silent> \rme :call C_MakeExeToRun()
 map <buffer> <silent> \rma :call C_MakeArguments()
-map <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+map <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 map <buffer> <silent> \rpa :call C_SplintArguments()
 map <buffer> <silent> \rd :call C_Indent()
 omap <buffer> <silent> \rh :call C_Hardcopy()
@@ -5532,9 +5905,13 @@ xmap <buffer> ac <Plug>GitGutterTextObjectOuterVisual
 omap <buffer> ac <Plug>GitGutterTextObjectOuterPending
 xmap <buffer> ic <Plug>GitGutterTextObjectInnerVisual
 omap <buffer> ic <Plug>GitGutterTextObjectInnerPending
-vnoremap <buffer> { S{}Pk=iB
-map <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-map <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+vnoremap <buffer> {
+ S{
+}Pk=iB
+map <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> <C-F9> :call C_Run()
 map <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <silent> g <Plug>delimitMateJumpMany
@@ -5545,18 +5922,24 @@ imap <buffer> ' <Plug>delimitMate'
 imap <buffer> ( <Plug>delimitMate(
 imap <buffer> ) <Plug>delimitMate)
 inoremap <buffer> /* /*  */<Left><Left><Left>
-inoremap <buffer> /* /*/kA
+inoremap <buffer> /*
+ /*
+
+/kA
 imap <buffer> [ <Plug>delimitMate[
 inoremap <buffer> <silent> \cl :call C_EndOfLineComment()
-inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()a
+inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
+a
 inoremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 inoremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 inoremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
 inoremap <buffer> <silent> \ccl :call C_InsertTemplate("comment.class")
 inoremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description")
 inoremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
-inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')a
-inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')a
+inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
+a
+inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
+a
 inoremap <buffer> <silent> \cx :call C_CommentToggle( )
 inoremap <buffer> \ccs :CFileSection
 inoremap <buffer> \chs :HFileSection
@@ -5589,7 +5972,8 @@ inoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 inoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif")
 inoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif")
 inoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif")
-inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 inoremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 inoremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
 inoremap <buffer> <silent> \pl :call C_InsertTemplate("preprocessor.line")
@@ -5597,8 +5981,10 @@ inoremap <buffer> <silent> \pp :call C_InsertTemplate("preprocessor.pragma")
 inoremap <buffer> <silent> \if :call C_InsertTemplate("idioms.function")
 inoremap <buffer> <silent> \isf :call C_InsertTemplate("idioms.function-static")
 inoremap <buffer> <silent> \im :call C_InsertTemplate("idioms.main")
-inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )i
-inoremap <buffer> <silent> \in :call C_CodeFor("down")i
+inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )
+i
+inoremap <buffer> <silent> \in :call C_CodeFor("down")
+i
 inoremap <buffer> <silent> \ie :call C_InsertTemplate("idioms.enum")
 inoremap <buffer> <silent> \is :call C_InsertTemplate("idioms.struct")
 inoremap <buffer> <silent> \iu :call C_InsertTemplate("idioms.union")
@@ -5644,15 +6030,18 @@ inoremap <buffer> <silent> \+ec :call C_InsertTemplate("cpp.error-class")
 inoremap <buffer> <silent> \+tr :call C_InsertTemplate("cpp.try-catch")
 inoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch")
 inoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
-imap <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+imap <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> \rr :call C_Run()
 imap <buffer> <silent> \ra :call C_Arguments()
 imap <buffer> <silent> \rm :call C_Make()
 imap <buffer> <silent> \rmc :call C_MakeClean()
 imap <buffer> <silent> \rme :call C_MakeExeToRun()
 imap <buffer> <silent> \rma :call C_MakeArguments()
-imap <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+imap <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 imap <buffer> <silent> \rpa :call C_SplintArguments()
 imap <buffer> <silent> \rd :call C_Indent()
 imap <buffer> <silent> \rh :call C_Hardcopy()
@@ -5663,7 +6052,9 @@ imap <buffer> <silent> \hp :call C_HelpCsupport()
 imap <buffer> <silent> \hm :call C_Help("m")
 imap <buffer> ] <Plug>delimitMate]
 imap <buffer> ` <Plug>delimitMate`
-inoremap <buffer> { {}O
+inoremap <buffer> {
+ {
+}O
 imap <buffer> { <Plug>delimitMate{
 imap <buffer> } <Plug>delimitMate}
 let &cpo=s:cpo_save
@@ -5797,8 +6188,10 @@ exe 'vert 2resize ' . ((&columns * 89 + 89) / 179)
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
-imap <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+imap <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> <C-F9> :call C_Run()
 imap <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <S-Tab> <Plug>delimitMateS-Tab
@@ -5816,15 +6209,30 @@ vnoremap <buffer> <silent> \cl :call C_EndOfLineComment()
 nnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 vnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 noremap <buffer> <silent> \cs :call C_GetLineEndCommCol()
-onoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-nnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-vnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-onoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-nnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-vnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
+onoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+onoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+nnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+vnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
 noremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 noremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 noremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
@@ -5833,10 +6241,12 @@ noremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description
 noremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
 onoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
 nnoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
-vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')a
+vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')
+a
 onoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
 nnoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
-vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')a
+vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')
+a
 onoremap <buffer> <silent> \cx :call C_CommentToggle( )
 nnoremap <buffer> <silent> \cx :call C_CommentToggle( )
 vnoremap <buffer> <silent> \cx :call C_CommentToggle( )
@@ -5901,8 +6311,10 @@ vnoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 vnoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif", "v")
 vnoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif", "v")
 vnoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif", "v")
-onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
-nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
+nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 vnoremap <buffer> <silent> \pi0 :call C_PPIf0("v")
 noremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 noremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
@@ -5996,8 +6408,10 @@ vnoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch", "v")
 onoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 nnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 vnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points", "v")
-map <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-map <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+map <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> \rr :call C_Run()
 map <buffer> <silent> \ra :call C_Arguments()
 map <buffer> <silent> \rm :call C_Make()
@@ -6005,7 +6419,8 @@ map <buffer> <silent> \rcm :call C_ChooseMakefile()
 map <buffer> <silent> \rmc :call C_MakeClean()
 map <buffer> <silent> \rme :call C_MakeExeToRun()
 map <buffer> <silent> \rma :call C_MakeArguments()
-map <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+map <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 map <buffer> <silent> \rpa :call C_SplintArguments()
 map <buffer> <silent> \rd :call C_Indent()
 omap <buffer> <silent> \rh :call C_Hardcopy()
@@ -6021,9 +6436,13 @@ xmap <buffer> ac <Plug>GitGutterTextObjectOuterVisual
 omap <buffer> ac <Plug>GitGutterTextObjectOuterPending
 xmap <buffer> ic <Plug>GitGutterTextObjectInnerVisual
 omap <buffer> ic <Plug>GitGutterTextObjectInnerPending
-vnoremap <buffer> { S{}Pk=iB
-map <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-map <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+vnoremap <buffer> {
+ S{
+}Pk=iB
+map <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> <C-F9> :call C_Run()
 map <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <silent> g <Plug>delimitMateJumpMany
@@ -6034,18 +6453,24 @@ imap <buffer> ' <Plug>delimitMate'
 imap <buffer> ( <Plug>delimitMate(
 imap <buffer> ) <Plug>delimitMate)
 inoremap <buffer> /* /*  */<Left><Left><Left>
-inoremap <buffer> /* /*/kA
+inoremap <buffer> /*
+ /*
+
+/kA
 imap <buffer> [ <Plug>delimitMate[
 inoremap <buffer> <silent> \cl :call C_EndOfLineComment()
-inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()a
+inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
+a
 inoremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 inoremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 inoremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
 inoremap <buffer> <silent> \ccl :call C_InsertTemplate("comment.class")
 inoremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description")
 inoremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
-inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')a
-inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')a
+inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
+a
+inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
+a
 inoremap <buffer> <silent> \cx :call C_CommentToggle( )
 inoremap <buffer> \ccs :CFileSection
 inoremap <buffer> \chs :HFileSection
@@ -6078,7 +6503,8 @@ inoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 inoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif")
 inoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif")
 inoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif")
-inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 inoremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 inoremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
 inoremap <buffer> <silent> \pl :call C_InsertTemplate("preprocessor.line")
@@ -6086,8 +6512,10 @@ inoremap <buffer> <silent> \pp :call C_InsertTemplate("preprocessor.pragma")
 inoremap <buffer> <silent> \if :call C_InsertTemplate("idioms.function")
 inoremap <buffer> <silent> \isf :call C_InsertTemplate("idioms.function-static")
 inoremap <buffer> <silent> \im :call C_InsertTemplate("idioms.main")
-inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )i
-inoremap <buffer> <silent> \in :call C_CodeFor("down")i
+inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )
+i
+inoremap <buffer> <silent> \in :call C_CodeFor("down")
+i
 inoremap <buffer> <silent> \ie :call C_InsertTemplate("idioms.enum")
 inoremap <buffer> <silent> \is :call C_InsertTemplate("idioms.struct")
 inoremap <buffer> <silent> \iu :call C_InsertTemplate("idioms.union")
@@ -6133,15 +6561,18 @@ inoremap <buffer> <silent> \+ec :call C_InsertTemplate("cpp.error-class")
 inoremap <buffer> <silent> \+tr :call C_InsertTemplate("cpp.try-catch")
 inoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch")
 inoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
-imap <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+imap <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> \rr :call C_Run()
 imap <buffer> <silent> \ra :call C_Arguments()
 imap <buffer> <silent> \rm :call C_Make()
 imap <buffer> <silent> \rmc :call C_MakeClean()
 imap <buffer> <silent> \rme :call C_MakeExeToRun()
 imap <buffer> <silent> \rma :call C_MakeArguments()
-imap <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+imap <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 imap <buffer> <silent> \rpa :call C_SplintArguments()
 imap <buffer> <silent> \rd :call C_Indent()
 imap <buffer> <silent> \rh :call C_Hardcopy()
@@ -6152,7 +6583,9 @@ imap <buffer> <silent> \hp :call C_HelpCsupport()
 imap <buffer> <silent> \hm :call C_Help("m")
 imap <buffer> ] <Plug>delimitMate]
 imap <buffer> ` <Plug>delimitMate`
-inoremap <buffer> { {}O
+inoremap <buffer> {
+ {
+}O
 imap <buffer> { <Plug>delimitMate{
 imap <buffer> } <Plug>delimitMate}
 let &cpo=s:cpo_save
@@ -6273,8 +6706,10 @@ argglobal
 if bufexists('Camera.cpp') | buffer Camera.cpp | else | edit Camera.cpp | endif
 let s:cpo_save=&cpo
 set cpo&vim
-imap <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+imap <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> <C-F9> :call C_Run()
 imap <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <S-Tab> <Plug>delimitMateS-Tab
@@ -6292,15 +6727,30 @@ vnoremap <buffer> <silent> \cl :call C_EndOfLineComment()
 nnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 vnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 noremap <buffer> <silent> \cs :call C_GetLineEndCommCol()
-onoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-nnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-vnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-onoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-nnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-vnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
+onoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+onoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+nnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+vnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
 noremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 noremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 noremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
@@ -6309,10 +6759,12 @@ noremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description
 noremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
 onoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
 nnoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
-vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')a
+vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')
+a
 onoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
 nnoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
-vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')a
+vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')
+a
 onoremap <buffer> <silent> \cx :call C_CommentToggle( )
 nnoremap <buffer> <silent> \cx :call C_CommentToggle( )
 vnoremap <buffer> <silent> \cx :call C_CommentToggle( )
@@ -6377,8 +6829,10 @@ vnoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 vnoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif", "v")
 vnoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif", "v")
 vnoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif", "v")
-onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
-nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
+nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 vnoremap <buffer> <silent> \pi0 :call C_PPIf0("v")
 noremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 noremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
@@ -6472,8 +6926,10 @@ vnoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch", "v")
 onoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 nnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 vnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points", "v")
-map <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-map <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+map <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> \rr :call C_Run()
 map <buffer> <silent> \ra :call C_Arguments()
 map <buffer> <silent> \rm :call C_Make()
@@ -6481,7 +6937,8 @@ map <buffer> <silent> \rcm :call C_ChooseMakefile()
 map <buffer> <silent> \rmc :call C_MakeClean()
 map <buffer> <silent> \rme :call C_MakeExeToRun()
 map <buffer> <silent> \rma :call C_MakeArguments()
-map <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+map <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 map <buffer> <silent> \rpa :call C_SplintArguments()
 map <buffer> <silent> \rd :call C_Indent()
 omap <buffer> <silent> \rh :call C_Hardcopy()
@@ -6497,9 +6954,13 @@ xmap <buffer> ac <Plug>GitGutterTextObjectOuterVisual
 omap <buffer> ac <Plug>GitGutterTextObjectOuterPending
 xmap <buffer> ic <Plug>GitGutterTextObjectInnerVisual
 omap <buffer> ic <Plug>GitGutterTextObjectInnerPending
-vnoremap <buffer> { S{}Pk=iB
-map <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-map <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+vnoremap <buffer> {
+ S{
+}Pk=iB
+map <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> <C-F9> :call C_Run()
 map <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <silent> g <Plug>delimitMateJumpMany
@@ -6510,18 +6971,24 @@ imap <buffer> ' <Plug>delimitMate'
 imap <buffer> ( <Plug>delimitMate(
 imap <buffer> ) <Plug>delimitMate)
 inoremap <buffer> /* /*  */<Left><Left><Left>
-inoremap <buffer> /* /*/kA
+inoremap <buffer> /*
+ /*
+
+/kA
 imap <buffer> [ <Plug>delimitMate[
 inoremap <buffer> <silent> \cl :call C_EndOfLineComment()
-inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()a
+inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
+a
 inoremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 inoremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 inoremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
 inoremap <buffer> <silent> \ccl :call C_InsertTemplate("comment.class")
 inoremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description")
 inoremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
-inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')a
-inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')a
+inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
+a
+inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
+a
 inoremap <buffer> <silent> \cx :call C_CommentToggle( )
 inoremap <buffer> \ccs :CFileSection
 inoremap <buffer> \chs :HFileSection
@@ -6554,7 +7021,8 @@ inoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 inoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif")
 inoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif")
 inoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif")
-inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 inoremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 inoremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
 inoremap <buffer> <silent> \pl :call C_InsertTemplate("preprocessor.line")
@@ -6562,8 +7030,10 @@ inoremap <buffer> <silent> \pp :call C_InsertTemplate("preprocessor.pragma")
 inoremap <buffer> <silent> \if :call C_InsertTemplate("idioms.function")
 inoremap <buffer> <silent> \isf :call C_InsertTemplate("idioms.function-static")
 inoremap <buffer> <silent> \im :call C_InsertTemplate("idioms.main")
-inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )i
-inoremap <buffer> <silent> \in :call C_CodeFor("down")i
+inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )
+i
+inoremap <buffer> <silent> \in :call C_CodeFor("down")
+i
 inoremap <buffer> <silent> \ie :call C_InsertTemplate("idioms.enum")
 inoremap <buffer> <silent> \is :call C_InsertTemplate("idioms.struct")
 inoremap <buffer> <silent> \iu :call C_InsertTemplate("idioms.union")
@@ -6609,15 +7079,18 @@ inoremap <buffer> <silent> \+ec :call C_InsertTemplate("cpp.error-class")
 inoremap <buffer> <silent> \+tr :call C_InsertTemplate("cpp.try-catch")
 inoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch")
 inoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
-imap <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+imap <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> \rr :call C_Run()
 imap <buffer> <silent> \ra :call C_Arguments()
 imap <buffer> <silent> \rm :call C_Make()
 imap <buffer> <silent> \rmc :call C_MakeClean()
 imap <buffer> <silent> \rme :call C_MakeExeToRun()
 imap <buffer> <silent> \rma :call C_MakeArguments()
-imap <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+imap <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 imap <buffer> <silent> \rpa :call C_SplintArguments()
 imap <buffer> <silent> \rd :call C_Indent()
 imap <buffer> <silent> \rh :call C_Hardcopy()
@@ -6628,7 +7101,9 @@ imap <buffer> <silent> \hp :call C_HelpCsupport()
 imap <buffer> <silent> \hm :call C_Help("m")
 imap <buffer> ] <Plug>delimitMate]
 imap <buffer> ` <Plug>delimitMate`
-inoremap <buffer> { {}O
+inoremap <buffer> {
+ {
+}O
 imap <buffer> { <Plug>delimitMate{
 imap <buffer> } <Plug>delimitMate}
 let &cpo=s:cpo_save
@@ -6762,8 +7237,10 @@ exe 'vert 2resize ' . ((&columns * 89 + 89) / 179)
 argglobal
 let s:cpo_save=&cpo
 set cpo&vim
-imap <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+imap <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> <C-F9> :call C_Run()
 imap <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <S-Tab> <Plug>delimitMateS-Tab
@@ -6781,15 +7258,30 @@ vnoremap <buffer> <silent> \cl :call C_EndOfLineComment()
 nnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 vnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 noremap <buffer> <silent> \cs :call C_GetLineEndCommCol()
-onoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-nnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-vnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-onoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-nnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-vnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
+onoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+onoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+nnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+vnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
 noremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 noremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 noremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
@@ -6798,10 +7290,12 @@ noremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description
 noremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
 onoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
 nnoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
-vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')a
+vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')
+a
 onoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
 nnoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
-vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')a
+vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')
+a
 onoremap <buffer> <silent> \cx :call C_CommentToggle( )
 nnoremap <buffer> <silent> \cx :call C_CommentToggle( )
 vnoremap <buffer> <silent> \cx :call C_CommentToggle( )
@@ -6866,8 +7360,10 @@ vnoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 vnoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif", "v")
 vnoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif", "v")
 vnoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif", "v")
-onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
-nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
+nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 vnoremap <buffer> <silent> \pi0 :call C_PPIf0("v")
 noremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 noremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
@@ -6961,8 +7457,10 @@ vnoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch", "v")
 onoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 nnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 vnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points", "v")
-map <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-map <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+map <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> \rr :call C_Run()
 map <buffer> <silent> \ra :call C_Arguments()
 map <buffer> <silent> \rm :call C_Make()
@@ -6970,7 +7468,8 @@ map <buffer> <silent> \rcm :call C_ChooseMakefile()
 map <buffer> <silent> \rmc :call C_MakeClean()
 map <buffer> <silent> \rme :call C_MakeExeToRun()
 map <buffer> <silent> \rma :call C_MakeArguments()
-map <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+map <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 map <buffer> <silent> \rpa :call C_SplintArguments()
 map <buffer> <silent> \rd :call C_Indent()
 omap <buffer> <silent> \rh :call C_Hardcopy()
@@ -6986,9 +7485,13 @@ xmap <buffer> ac <Plug>GitGutterTextObjectOuterVisual
 omap <buffer> ac <Plug>GitGutterTextObjectOuterPending
 xmap <buffer> ic <Plug>GitGutterTextObjectInnerVisual
 omap <buffer> ic <Plug>GitGutterTextObjectInnerPending
-vnoremap <buffer> { S{}Pk=iB
-map <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-map <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+vnoremap <buffer> {
+ S{
+}Pk=iB
+map <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> <C-F9> :call C_Run()
 map <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <silent> g <Plug>delimitMateJumpMany
@@ -6999,18 +7502,24 @@ imap <buffer> ' <Plug>delimitMate'
 imap <buffer> ( <Plug>delimitMate(
 imap <buffer> ) <Plug>delimitMate)
 inoremap <buffer> /* /*  */<Left><Left><Left>
-inoremap <buffer> /* /*/kA
+inoremap <buffer> /*
+ /*
+
+/kA
 imap <buffer> [ <Plug>delimitMate[
 inoremap <buffer> <silent> \cl :call C_EndOfLineComment()
-inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()a
+inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
+a
 inoremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 inoremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 inoremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
 inoremap <buffer> <silent> \ccl :call C_InsertTemplate("comment.class")
 inoremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description")
 inoremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
-inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')a
-inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')a
+inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
+a
+inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
+a
 inoremap <buffer> <silent> \cx :call C_CommentToggle( )
 inoremap <buffer> \ccs :CFileSection
 inoremap <buffer> \chs :HFileSection
@@ -7043,7 +7552,8 @@ inoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 inoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif")
 inoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif")
 inoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif")
-inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 inoremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 inoremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
 inoremap <buffer> <silent> \pl :call C_InsertTemplate("preprocessor.line")
@@ -7051,8 +7561,10 @@ inoremap <buffer> <silent> \pp :call C_InsertTemplate("preprocessor.pragma")
 inoremap <buffer> <silent> \if :call C_InsertTemplate("idioms.function")
 inoremap <buffer> <silent> \isf :call C_InsertTemplate("idioms.function-static")
 inoremap <buffer> <silent> \im :call C_InsertTemplate("idioms.main")
-inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )i
-inoremap <buffer> <silent> \in :call C_CodeFor("down")i
+inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )
+i
+inoremap <buffer> <silent> \in :call C_CodeFor("down")
+i
 inoremap <buffer> <silent> \ie :call C_InsertTemplate("idioms.enum")
 inoremap <buffer> <silent> \is :call C_InsertTemplate("idioms.struct")
 inoremap <buffer> <silent> \iu :call C_InsertTemplate("idioms.union")
@@ -7098,15 +7610,18 @@ inoremap <buffer> <silent> \+ec :call C_InsertTemplate("cpp.error-class")
 inoremap <buffer> <silent> \+tr :call C_InsertTemplate("cpp.try-catch")
 inoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch")
 inoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
-imap <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+imap <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> \rr :call C_Run()
 imap <buffer> <silent> \ra :call C_Arguments()
 imap <buffer> <silent> \rm :call C_Make()
 imap <buffer> <silent> \rmc :call C_MakeClean()
 imap <buffer> <silent> \rme :call C_MakeExeToRun()
 imap <buffer> <silent> \rma :call C_MakeArguments()
-imap <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+imap <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 imap <buffer> <silent> \rpa :call C_SplintArguments()
 imap <buffer> <silent> \rd :call C_Indent()
 imap <buffer> <silent> \rh :call C_Hardcopy()
@@ -7117,7 +7632,9 @@ imap <buffer> <silent> \hp :call C_HelpCsupport()
 imap <buffer> <silent> \hm :call C_Help("m")
 imap <buffer> ] <Plug>delimitMate]
 imap <buffer> ` <Plug>delimitMate`
-inoremap <buffer> { {}O
+inoremap <buffer> {
+ {
+}O
 imap <buffer> { <Plug>delimitMate{
 imap <buffer> } <Plug>delimitMate}
 let &cpo=s:cpo_save
@@ -7238,8 +7755,10 @@ argglobal
 if bufexists('Window.cpp') | buffer Window.cpp | else | edit Window.cpp | endif
 let s:cpo_save=&cpo
 set cpo&vim
-imap <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+imap <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> <C-F9> :call C_Run()
 imap <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <S-Tab> <Plug>delimitMateS-Tab
@@ -7257,15 +7776,30 @@ vnoremap <buffer> <silent> \cl :call C_EndOfLineComment()
 nnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 vnoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
 noremap <buffer> <silent> \cs :call C_GetLineEndCommCol()
-onoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-nnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-vnoremap <buffer> <silent> \c* :call C_CodeToCommentC():nohlsearchj
-onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp():nohlsearchj
-onoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-nnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
-vnoremap <buffer> <silent> \co :call C_CommentToCode():nohlsearch
+onoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \c* :call C_CodeToCommentC()
+:nohlsearch
+j
+onoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+nnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+vnoremap <buffer> <silent> \cc :call C_CodeToCommentCpp()
+:nohlsearch
+j
+onoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+nnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
+vnoremap <buffer> <silent> \co :call C_CommentToCode()
+:nohlsearch
 noremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 noremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 noremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
@@ -7274,10 +7808,12 @@ noremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description
 noremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
 onoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
 nnoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
-vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')a
+vnoremap <buffer> <silent> \cd s:call C_InsertDateAndTime('d')
+a
 onoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
 nnoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
-vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')a
+vnoremap <buffer> <silent> \ct s:call C_InsertDateAndTime('dt')
+a
 onoremap <buffer> <silent> \cx :call C_CommentToggle( )
 nnoremap <buffer> <silent> \cx :call C_CommentToggle( )
 vnoremap <buffer> <silent> \cx :call C_CommentToggle( )
@@ -7342,8 +7878,10 @@ vnoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 vnoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif", "v")
 vnoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif", "v")
 vnoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif", "v")
-onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
-nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+onoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
+nnoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 vnoremap <buffer> <silent> \pi0 :call C_PPIf0("v")
 noremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 noremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
@@ -7437,8 +7975,10 @@ vnoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch", "v")
 onoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 nnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
 vnoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points", "v")
-map <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-map <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+map <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> \rr :call C_Run()
 map <buffer> <silent> \ra :call C_Arguments()
 map <buffer> <silent> \rm :call C_Make()
@@ -7446,7 +7986,8 @@ map <buffer> <silent> \rcm :call C_ChooseMakefile()
 map <buffer> <silent> \rmc :call C_MakeClean()
 map <buffer> <silent> \rme :call C_MakeExeToRun()
 map <buffer> <silent> \rma :call C_MakeArguments()
-map <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+map <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 map <buffer> <silent> \rpa :call C_SplintArguments()
 map <buffer> <silent> \rd :call C_Indent()
 omap <buffer> <silent> \rh :call C_Hardcopy()
@@ -7462,9 +8003,13 @@ xmap <buffer> ac <Plug>GitGutterTextObjectOuterVisual
 omap <buffer> ac <Plug>GitGutterTextObjectOuterPending
 xmap <buffer> ic <Plug>GitGutterTextObjectInnerVisual
 omap <buffer> ic <Plug>GitGutterTextObjectInnerPending
-vnoremap <buffer> { S{}Pk=iB
-map <buffer> <silent> <M-F9> :call C_Compile():call C_HlMessage()
-map <buffer> <silent> <F9> :call C_Link():call C_HlMessage()
+vnoremap <buffer> {
+ S{
+}Pk=iB
+map <buffer> <silent> <M-F9> :call C_Compile()
+:call C_HlMessage()
+map <buffer> <silent> <F9> :call C_Link()
+:call C_HlMessage()
 map <buffer> <silent> <C-F9> :call C_Run()
 map <buffer> <silent> <S-F9> :call C_Arguments()
 imap <buffer> <silent> g <Plug>delimitMateJumpMany
@@ -7475,18 +8020,24 @@ imap <buffer> ' <Plug>delimitMate'
 imap <buffer> ( <Plug>delimitMate(
 imap <buffer> ) <Plug>delimitMate)
 inoremap <buffer> /* /*  */<Left><Left><Left>
-inoremap <buffer> /* /*/kA
+inoremap <buffer> /*
+ /*
+
+/kA
 imap <buffer> [ <Plug>delimitMate[
 inoremap <buffer> <silent> \cl :call C_EndOfLineComment()
-inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()a
+inoremap <buffer> <silent> \cj :call C_AdjustLineEndComm()
+a
 inoremap <buffer> <silent> \cfr :call C_InsertTemplate("comment.frame")
 inoremap <buffer> <silent> \cfu :call C_InsertTemplate("comment.function")
 inoremap <buffer> <silent> \cme :call C_InsertTemplate("comment.method")
 inoremap <buffer> <silent> \ccl :call C_InsertTemplate("comment.class")
 inoremap <buffer> <silent> \cfdi :call C_InsertTemplate("comment.file-description")
 inoremap <buffer> <silent> \cfdh :call C_InsertTemplate("comment.file-description-header")
-inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')a
-inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')a
+inoremap <buffer> <silent> \cd :call C_InsertDateAndTime('d')
+a
+inoremap <buffer> <silent> \ct :call C_InsertDateAndTime('dt')
+a
 inoremap <buffer> <silent> \cx :call C_CommentToggle( )
 inoremap <buffer> \ccs :CFileSection
 inoremap <buffer> \chs :HFileSection
@@ -7519,7 +8070,8 @@ inoremap <buffer> <silent> \pie :call C_InsertTemplate("preprocessor.if-else-e
 inoremap <buffer> <silent> \pid :call C_InsertTemplate("preprocessor.ifdef-else-endif")
 inoremap <buffer> <silent> \pin :call C_InsertTemplate("preprocessor.ifndef-else-endif")
 inoremap <buffer> <silent> \pind :call C_InsertTemplate("preprocessor.ifndef-def-endif")
-inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")2ji
+inoremap <buffer> <silent> \pi0 :call C_PPIf0("a")
+2ji
 inoremap <buffer> <silent> \pr0 :call C_PPIf0Remove()
 inoremap <buffer> <silent> \pe :call C_InsertTemplate("preprocessor.error")
 inoremap <buffer> <silent> \pl :call C_InsertTemplate("preprocessor.line")
@@ -7527,8 +8079,10 @@ inoremap <buffer> <silent> \pp :call C_InsertTemplate("preprocessor.pragma")
 inoremap <buffer> <silent> \if :call C_InsertTemplate("idioms.function")
 inoremap <buffer> <silent> \isf :call C_InsertTemplate("idioms.function-static")
 inoremap <buffer> <silent> \im :call C_InsertTemplate("idioms.main")
-inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )i
-inoremap <buffer> <silent> \in :call C_CodeFor("down")i
+inoremap <buffer> <silent> \i0 :call C_CodeFor("up"  )
+i
+inoremap <buffer> <silent> \in :call C_CodeFor("down")
+i
 inoremap <buffer> <silent> \ie :call C_InsertTemplate("idioms.enum")
 inoremap <buffer> <silent> \is :call C_InsertTemplate("idioms.struct")
 inoremap <buffer> <silent> \iu :call C_InsertTemplate("idioms.union")
@@ -7574,15 +8128,18 @@ inoremap <buffer> <silent> \+ec :call C_InsertTemplate("cpp.error-class")
 inoremap <buffer> <silent> \+tr :call C_InsertTemplate("cpp.try-catch")
 inoremap <buffer> <silent> \+ca :call C_InsertTemplate("cpp.catch")
 inoremap <buffer> <silent> \+c. :call C_InsertTemplate("cpp.catch-points")
-imap <buffer> <silent> \rc :call C_Compile():call C_HlMessage()
-imap <buffer> <silent> \rl :call C_Link():call C_HlMessage()
+imap <buffer> <silent> \rc :call C_Compile()
+:call C_HlMessage()
+imap <buffer> <silent> \rl :call C_Link()
+:call C_HlMessage()
 imap <buffer> <silent> \rr :call C_Run()
 imap <buffer> <silent> \ra :call C_Arguments()
 imap <buffer> <silent> \rm :call C_Make()
 imap <buffer> <silent> \rmc :call C_MakeClean()
 imap <buffer> <silent> \rme :call C_MakeExeToRun()
 imap <buffer> <silent> \rma :call C_MakeArguments()
-imap <buffer> <silent> \rp :call C_SplintCheck():call C_HlMessage()
+imap <buffer> <silent> \rp :call C_SplintCheck()
+:call C_HlMessage()
 imap <buffer> <silent> \rpa :call C_SplintArguments()
 imap <buffer> <silent> \rd :call C_Indent()
 imap <buffer> <silent> \rh :call C_Hardcopy()
@@ -7593,7 +8150,9 @@ imap <buffer> <silent> \hp :call C_HelpCsupport()
 imap <buffer> <silent> \hm :call C_Help("m")
 imap <buffer> ] <Plug>delimitMate]
 imap <buffer> ` <Plug>delimitMate`
-inoremap <buffer> { {}O
+inoremap <buffer> {
+ {
+}O
 imap <buffer> { <Plug>delimitMate{
 imap <buffer> } <Plug>delimitMate}
 let &cpo=s:cpo_save
