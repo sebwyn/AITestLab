@@ -1,4 +1,4 @@
-#include "Renderables/TileChunkRenderable.hpp"
+#include "Components/TileChunkRenderable.hpp"
 
 #include <iostream>
 

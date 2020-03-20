@@ -5,7 +5,7 @@
 
 #include "OBJLoader.hpp"
 
-#include "Renderables/TileChunkRenderable.hpp"
+#include "Components/TileChunkRenderable.hpp"
 #include "Components/FirstPersonController.hpp"
 
 #include "Texture.hpp"
@@ -50,8 +50,6 @@ void MyGame::start(){
     sprite.addComponent<Transform>();
     sprite.getComponent<Transform>().setPosition(0,0,0);
 
-    std::cout << "hi" << std::endl;
-
     camera.addComponent<FirstPersonController>();
     camera.getComponent<Transform>().setPosition(0,0,1.5);
     //sprite.destroy();
@@ -61,6 +59,7 @@ void MyGame::start(){
 
 void MyGame::update(){
     //sprite.transform->translate(0.1,0.1,0);
+    if (sprite.hasComponent<TileChunkRenderable>())
     sprite.getComponent<TileChunkRenderable>()
     .setMatrices(camera.getComponent<Camera>().getProjectionMatrix(), camera.getComponent<Camera>().getViewMatrix());
 }

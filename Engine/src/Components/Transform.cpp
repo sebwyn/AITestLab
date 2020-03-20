@@ -10,7 +10,6 @@ using namespace Engine;
 Transform::Transform() = default;
 
 Transform::~Transform(){
-    std::cout << "deleted transform" << '\n';
 }
 
 void Transform::translate(float x, float y, float z){
@@ -28,7 +27,6 @@ void Transform::scale(float x, float y, float z){
 
 void Transform::setPosition(float x, float y, float z){
     position = glm::vec3(x, y, z);
-    std::cout << "Set Pos Position: " << &position << std::endl;
 }
 
 void Transform::setRotation(float x, float y, float z){

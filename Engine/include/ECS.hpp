@@ -73,6 +73,11 @@ namespace Engine {
 
             template<typename T>
             T& getComponent() const{
+                if (!hasComponent<T>()){
+                    std::cout << "COULDN'T GET COMPONENT: "
+                        << __PRETTY_FUNCTION__ << std::endl;
+                    exit(-1);
+                }
                 Component* component = componentLookup[getComponentTypeID<T>()];
                 return *static_cast<T*>(component);
             } 
@@ -120,7 +125,6 @@ namespace Engine {
         }
 
         void update(){
-            std::cout << entities.size() << std::endl;
             for (auto& entity : entities){
                 entity->update();
             }
